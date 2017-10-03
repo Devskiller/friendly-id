@@ -1,6 +1,9 @@
 package com.devskiller.friendly_id;
 
 import java.math.BigInteger;
+import java.util.regex.Pattern;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Base62 encoder/decoder.
@@ -45,8 +48,13 @@ public class Base62 {
 	 * @throws IllegalArgumentException if <code>string</code> is empty
 	 */
 	static BigInteger decode(final String string) {
+		requireNonNull(string, "Decoded string must not be null");
 		if (string.length() == 0) {
 			throw new IllegalArgumentException("string must not be empty");
+		}
+
+		if (!Pattern.matches("[" + DIGITS + "]*", string)) {
+			throw new IllegalArgumentException(String.format("String '%s' contains illegal characters, only '%s' are allowed", string, DIGITS));
 		}
 		BigInteger result = BigInteger.ZERO;
 		int digits = string.length();

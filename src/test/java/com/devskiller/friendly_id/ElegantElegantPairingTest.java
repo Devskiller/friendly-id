@@ -19,6 +19,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ElegantElegantPairingTest {
 
+	Arbitrary<Tuple2<Long, Long>> longPairs = ignored -> {
+		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
+		return random -> Tuple.of(longs.apply(random), longs.apply(random));
+	};
+
 	@Test
 	public void shouldPairTwoLongs() {
 		long x = 1;
@@ -45,11 +50,6 @@ public class ElegantElegantPairingTest {
 
 	@Test
 	public void resultOfPairingIsPositiveAndCanBeInvertedWithUnpairing() throws Exception {
-		Arbitrary<Tuple2<Long, Long>> longPairs = ignored -> {
-			Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
-			return random -> Tuple.of(longs.apply(random), longs.apply(random));
-		};
-
 		def("unpair(pair(long,long).contains(long,long)")
 				.forAll(longPairs)
 				.suchThat(pair -> pair(valueOf(pair._1), valueOf(pair._2)).compareTo(BigInteger.ZERO) > 0)
