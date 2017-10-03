@@ -12,10 +12,11 @@ public class Url62Test {
 
 	@Test
 	public void resultOfPairingIsPositiveAndCanBeInvertedWithUnpairing() throws Exception {
-		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
-		Arbitrary<UUID> uuids = longs
-				.flatMap(value -> random -> new UUID(value, longs.apply(random)))
-				.arbitrary();
+		Arbitrary<UUID> uuids = ignored -> {
+			Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
+			return random -> new UUID(longs.apply(random), longs.apply(random));
+		};
+
 		def("Url62.decode(Url62.encode(uuid)).equals(uuid)")
 				.forAll(uuids)
 				.suchThat(uuid -> Url62.decode(Url62.encode(uuid)).equals(uuid))
