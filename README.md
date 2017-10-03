@@ -17,3 +17,9 @@ Usage
 
 	Url62.encode(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
 	// 7NLCAyd6sKR7kDHxgAWFPG
+
+Note
+--
+	
+* Id `00cafe` is equal to `cafe` - leading zeros are ignored.
+* UUID is a 128-bit number, so id also can store only 128-bit number
