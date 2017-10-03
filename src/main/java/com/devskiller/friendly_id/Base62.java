@@ -48,6 +48,10 @@ public class Base62 {
 	 * @throws IllegalArgumentException if <code>string</code> is empty
 	 */
 	static BigInteger decode(final String string) {
+		return decode(string, 128);
+	}
+
+	static BigInteger decode(final String string,  int bitLimit) {
 		requireNonNull(string, "Decoded string must not be null");
 		if (string.length() == 0) {
 			return throwIllegalArgumentException("string '%s' must not be empty", null);
@@ -60,10 +64,10 @@ public class Base62 {
 		int digits = string.length();
 		for (int index = 0; index < digits; index++) {
 			int digit = DIGITS.indexOf(string.charAt(digits - index - 1));
-			if (result.bitLength() > 128) {
+			result = result.add(BigInteger.valueOf(digit).multiply(BASE.pow(index)));
+			if (bitLimit > 0 && result.bitLength() > bitLimit) {
 				throwIllegalArgumentException("String contains '%s' more than 128bit information (%sbit)", string, result.bitLength());
 			}
-			result = result.add(BigInteger.valueOf(digit).multiply(BASE.pow(index)));
 		}
 		return result;
 	}

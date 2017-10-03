@@ -2,8 +2,10 @@ package com.devskiller.friendly_id;
 
 import java.util.UUID;
 
+import io.vavr.Tuple;
 import io.vavr.test.Arbitrary;
 import io.vavr.test.Gen;
+import io.vavr.test.Property;
 import org.junit.Test;
 
 import static io.vavr.test.Property.def;
@@ -11,26 +13,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class Url62Test {
 
-	Arbitrary<UUID> uuids = ignored -> {
-		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
-		return random -> new UUID(longs.apply(random), longs.apply(random));
-	};
 
 	@Test
-	public void resultOfPairingIsPositiveAndCanBeInvertedWithUnpairing() {
-		def("Url62.decode(Url62.encode(uuid)).equals(uuid)")
-				.forAll(uuids)
-				.suchThat(uuid -> Url62.decode(Url62.encode(uuid)).equals(uuid))
-				.check()
+	public void decodedCodeShouldBeEncodedToTheSameCode() throws Exception {
+		def("Url62.encode(Url62.decode(code)).equals(DataProvider.removeLeadingZeros(code))")
+				.forAll(DataProvider.CODES)
+				.suchThat(code -> Url62.encode(Url62.decode(code)).equals(DataProvider.removeLeadingZeros(code)))
+				.check(100, 100000)
 				.assertIsSatisfied();
 	}
 
 	@Test
-	public void resultOfPairingIsPositiveAndCanBeInvertedWithUnpairing2() {
+	public void encodedUUIDShouldBeDecodedToTheSameUUID() {
 		def("Url62.decode(Url62.encode(uuid)).equals(uuid)")
-				.forAll(uuids)
-				.suchThat(uuid -> Url62.encode(uuid).length() <= 22)
-				.check()
+				.forAll(DataProvider.UUIDS)
+				.suchThat(uuid -> Url62.decode(Url62.encode(uuid)).equals(uuid))
+				.check(-1, 1000000)
 				.assertIsSatisfied();
 	}
 

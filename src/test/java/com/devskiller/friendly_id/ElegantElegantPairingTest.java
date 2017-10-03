@@ -2,11 +2,6 @@ package com.devskiller.friendly_id;
 
 import java.math.BigInteger;
 
-import io.vavr.Tuple;
-import io.vavr.Tuple2;
-import io.vavr.test.Arbitrary;
-import io.vavr.test.Gen;
-import io.vavr.test.Property;
 import org.junit.Test;
 
 import static com.devskiller.friendly_id.ElegantPairing.pair;
@@ -18,11 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class ElegantElegantPairingTest {
-
-	Arbitrary<Tuple2<Long, Long>> longPairs = ignored -> {
-		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
-		return random -> Tuple.of(longs.apply(random), longs.apply(random));
-	};
 
 	@Test
 	public void shouldPairTwoLongs() {
@@ -51,7 +41,7 @@ public class ElegantElegantPairingTest {
 	@Test
 	public void resultOfPairingIsPositiveAndCanBeInvertedWithUnpairing() throws Exception {
 		def("unpair(pair(long,long).contains(long,long)")
-				.forAll(longPairs)
+				.forAll(DataProvider.LONG_PAIRS)
 				.suchThat(pair -> pair(valueOf(pair._1), valueOf(pair._2)).compareTo(BigInteger.ZERO) > 0)
 				.implies(pair -> asList(unpair(pair(valueOf(pair._1), valueOf(pair._2))))
 						.containsAll(asList(valueOf(pair._1), valueOf(pair._2))))
