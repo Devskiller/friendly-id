@@ -27,6 +27,45 @@
         <developerConnection>scm:git:git@github.com:Devskiller/friendly-id.git</developerConnection>
     </scm>
 
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/Devskiller/friendly-id.git</connection>
+        <developerConnection>scm:git:git@github.com:Devskiller/friendly-id.git</developerConnection>
+        <url>https://github.com/Devskiller/friendly-id</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>oss</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>oss</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/Devskiller/friendly-id/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/Devskiller/friendly-id</url>
+    </ciManagement>
+
     <dependencies>
         <!-- required for sqrt -->
         <dependency>

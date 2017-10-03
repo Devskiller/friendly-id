@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+- oraclejdk8
+
+script: ./mvnw package
+
+cache:
+  directories:
+  - ~/.m2/repository
+  - ~/.m2/wrapper
