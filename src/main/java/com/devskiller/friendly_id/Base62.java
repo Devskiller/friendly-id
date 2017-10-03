@@ -27,7 +27,7 @@ public class Base62 {
 	 */
 	static String encode(BigInteger number) {
 		if (number.compareTo(BigInteger.ZERO) < 0) {
-			throw new IllegalArgumentException("number must not be negative");
+			throwIllegalArgumentException("number must not be negative");
 		}
 		StringBuilder result = new StringBuilder();
 		while (number.compareTo(BigInteger.ZERO) > 0) {
@@ -50,19 +50,26 @@ public class Base62 {
 	static BigInteger decode(final String string) {
 		requireNonNull(string, "Decoded string must not be null");
 		if (string.length() == 0) {
-			throw new IllegalArgumentException("string must not be empty");
+			return throwIllegalArgumentException("string '%s' must not be empty", null);
 		}
 
 		if (!Pattern.matches("[" + DIGITS + "]*", string)) {
-			throw new IllegalArgumentException(String.format("String '%s' contains illegal characters, only '%s' are allowed", string, DIGITS));
+			throwIllegalArgumentException("String '%s' contains illegal characters, only '%s' are allowed", string, DIGITS);
 		}
 		BigInteger result = BigInteger.ZERO;
 		int digits = string.length();
 		for (int index = 0; index < digits; index++) {
 			int digit = DIGITS.indexOf(string.charAt(digits - index - 1));
+			if (result.bitLength() > 128) {
+				throwIllegalArgumentException("String contains '%s' more than 128bit information (%sbit)", string, result.bitLength());
+			}
 			result = result.add(BigInteger.valueOf(digit).multiply(BASE.pow(index)));
 		}
 		return result;
+	}
+
+	private static BigInteger throwIllegalArgumentException(String format, Object... args) {
+		throw new IllegalArgumentException(String.format(format, args));
 	}
 
 }

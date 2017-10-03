@@ -16,4 +16,4 @@ Usage
 	// c3587ec5-0976-497f-8374-61e0c2ea3da5
 
 	Url62.encode(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
-	// 7NLCAyd6sKR7kDHxgAWFPG;
+	// 7NLCAyd6sKR7kDHxgAWFPG

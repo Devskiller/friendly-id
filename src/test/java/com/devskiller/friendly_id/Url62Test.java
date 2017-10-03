@@ -54,4 +54,13 @@ public class Url62Test {
 				.isInstanceOf(NullPointerException.class)
 				.hasMessageContaining("must not be null");
 	}
+
+	@Test
+	public void shouldFaildWhenStringContainsMoreThan128bitInformation() throws Exception {
+		assertThatThrownBy(() -> Url62.decode("7NLCAyd6sKR7kDHxgAWFPas"))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("more than 128bit information");
+	}
+
+
 }
