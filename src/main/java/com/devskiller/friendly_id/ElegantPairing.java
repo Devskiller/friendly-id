@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 
 import com.google.common.math.BigIntegerMath;
 
+import static java.math.BigInteger.ONE;
+
 /**
  * https://stackoverflow.com/questions/919612/mapping-two-integers-to-one-in-a-unique-and-deterministic-way/13871379#13871379
  */
@@ -13,10 +15,8 @@ class ElegantPairing {
 	private static final BigInteger TWO = new BigInteger("2");
 
 	static BigInteger pair(BigInteger first, BigInteger second) {
-		BigInteger a = first.compareTo(BigInteger.ZERO) >= 0 ? TWO.multiply(first) :
-				TWO.negate().multiply(first).subtract(BigInteger.ONE);
-		BigInteger b = second.compareTo(BigInteger.ZERO) >= 0 ? TWO.multiply(second) :
-				TWO.negate().multiply(second).subtract(BigInteger.ONE);
+		BigInteger a = first.signum() >= 0 ? TWO.multiply(first) : TWO.negate().multiply(first).subtract(ONE);
+		BigInteger b = second.signum() >= 0 ? TWO.multiply(second) : TWO.negate().multiply(second).subtract(ONE);
 		if (a.compareTo(b) >= 0) {
 			return a.multiply(a).add(a).add(b);
 		} else {
@@ -33,7 +33,7 @@ class ElegantPairing {
 	}
 
 	private static BigInteger recoverSignedValue(BigInteger value) {
-		return value.testBit(0) ? value.divide(TWO).negate().subtract(BigInteger.ONE) : value.divide(TWO);
+		return value.testBit(0) ? value.divide(TWO).negate().subtract(ONE) : value.divide(TWO);
 	}
 
 }

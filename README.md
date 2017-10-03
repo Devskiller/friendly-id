@@ -21,5 +21,5 @@ Usage
 Note
 --
 	
-* Id `00cafe` is equal to `cafe` - leading zeros are ignored.
-* UUID is a 128-bit number, so id also can store only 128-bit number
+* *Id* `00cafe` is equal to `cafe` - leading zeros are ignored.
+* *UUID* is a 128-bit number, so *id* also can store only 128-bit number
