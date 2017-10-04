@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id-project</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.9.0</version>
 
     <name>friendly id</name>
     <description>Library to convert uuid to url friendly IDs basing on base62</description>
@@ -50,7 +48,7 @@
         <connection>scm:git:https://github.com/Devskiller/friendly-id.git</connection>
         <developerConnection>scm:git:git@github.com:Devskiller/friendly-id.git</developerConnection>
         <url>https://github.com/Devskiller/friendly-id</url>
-        <tag>HEAD</tag>
+        <tag>0.9.0</tag>
     </scm>
 
     <distributionManagement>
