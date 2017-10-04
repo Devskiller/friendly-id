@@ -27,7 +27,8 @@ class DataProvider {
 					Tuple.of(1, Gen.choose('A', 'Z')),
 					Tuple.of(1, Gen.choose('a', 'z')),
 					Tuple.of(1, Gen.choose('0', '9'))))
-			.filter(code -> !Strings.isNullOrEmpty(code) && Base62.decode(code, -1).bitLength() <= 128);
+			.filter(code -> !Strings.isNullOrEmpty(code))
+			.filter(code -> Base62.decode(code, -1).bitLength() <= 128);
 
 	static Arbitrary<Tuple2<Long, Long>> LONG_PAIRS = ignored -> {
 		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
