@@ -22,11 +22,11 @@ class ElegantPairing {
 	}
 
 	static BigInteger[] unpair(BigInteger value) {
-		BigInteger x = sqrt(value);
-		BigInteger y = value.subtract(x.multiply(x));
-		return x.compareTo(y) > 0 ?
-				new BigInteger[]{recoverSignedValue(y), recoverSignedValue(x)} :
-				new BigInteger[]{recoverSignedValue(x), recoverSignedValue(y.subtract(x))};
+		BigInteger a = sqrt(value);
+		BigInteger b = value.subtract(a.multiply(a));
+		return a.compareTo(b) > 0 ?
+				new BigInteger[]{recoverSignedValue(b), recoverSignedValue(a)} :
+				new BigInteger[]{recoverSignedValue(a), recoverSignedValue(b.subtract(a))};
 	}
 
 	private static BigInteger recoverSignedValue(BigInteger value) {
