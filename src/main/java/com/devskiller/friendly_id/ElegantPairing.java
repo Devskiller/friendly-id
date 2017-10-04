@@ -1,9 +1,6 @@
 package com.devskiller.friendly_id;
 
 import java.math.BigInteger;
-import java.math.RoundingMode;
-
-import com.google.common.math.BigIntegerMath;
 
 import static java.math.BigInteger.ONE;
 
@@ -25,7 +22,7 @@ class ElegantPairing {
 	}
 
 	static BigInteger[] unpair(BigInteger value) {
-		BigInteger x = BigIntegerMath.sqrt(value, RoundingMode.FLOOR);
+		BigInteger x = sqrt(value);
 		BigInteger y = value.subtract(x.multiply(x));
 		return x.compareTo(y) > 0 ?
 				new BigInteger[]{recoverSignedValue(y), recoverSignedValue(x)} :
@@ -34,6 +31,22 @@ class ElegantPairing {
 
 	private static BigInteger recoverSignedValue(BigInteger value) {
 		return value.testBit(0) ? value.divide(TWO).negate().subtract(ONE) : value.divide(TWO);
+	}
+
+	/**
+	 * Source: https://stackoverflow.com/a/36187890/516167
+	 */
+	private static BigInteger sqrt(BigInteger n) {
+		BigInteger a = BigInteger.ONE;
+		BigInteger b = n.shiftRight(1).add(TWO); // (n >> 1) + 2 (ensure 0 doesn't show up)
+		while (b.compareTo(a) >= 0) {
+			BigInteger mid = a.add(b).shiftRight(1); // (a+b) >> 1
+			if (mid.multiply(mid).compareTo(n) > 0)
+				b = mid.subtract(BigInteger.ONE);
+			else
+				a = mid.add(BigInteger.ONE);
+		}
+		return a.subtract(BigInteger.ONE);
 	}
 
 }
