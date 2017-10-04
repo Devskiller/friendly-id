@@ -11,8 +11,7 @@ import static io.vavr.test.Property.def;
 import static java.math.BigInteger.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-public class ElegantElegantPairingTest {
+public class ElegantPairingTest {
 
 	@Test
 	public void shouldPairTwoLongs() {

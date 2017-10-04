@@ -10,11 +10,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>friendly_id</module>
-        <module>jackson-datatype</module>
-        <module>spring-boot</module>
-        <module>spring-boot-starter</module>
-        <module>spring-boot-sample</module>
+        <module>friendly-id</module>
+        <module>friendly-id-jackson-datatype</module>
+        <module>friendly-id-spring-boot</module>
+        <module>friendly-id-spring-boot-starter</module>
+        <module>friendly-id-spring-boot-sample</module>
     </modules>
 
     <properties>
