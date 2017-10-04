@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
  * <p>
  * This is free and unencumbered public domain software
  *
- * @see https://github.com/opencoinage/opencoinage/blob/master/src/java/org/opencoinage/util/Base62.java
+ * Source: https://github.com/opencoinage/opencoinage/blob/master/src/java/org/opencoinage/util/Base62.java
  */
 public class Base62 {
 
