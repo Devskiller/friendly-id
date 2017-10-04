@@ -2,6 +2,8 @@ package com.devskiller.friendly_id.sample;
 
 import java.util.UUID;
 
+import lombok.Value;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +23,9 @@ public class Application {
 		return new Bar(UUID.randomUUID());
 	}
 
-	public class Bar {
-
+	@Value
+	class Bar {
 		private final UUID id;
-
-		public Bar(UUID id) {
-			this.id = id;
-		}
-
-		public UUID getId() {
-			return id;
-		}
 	}
 
 }

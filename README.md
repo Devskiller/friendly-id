@@ -45,7 +45,7 @@ Add starter dependency:
         <version>${project.version}</version>
     </dependency>
     
-Sample controller:
+Sample application:
 
     @SpringBootApplication
     @RestController
@@ -60,21 +60,11 @@ Sample controller:
             return new Bar(UUID.randomUUID());
         }
     
-        public class Bar {
-    
+        @Value
+        class Bar {
             private final UUID id;
-    
-            public Bar(UUID id) {
-                this.id = id;
-            }
-    
-            public UUID getId() {
-                return id;
-            }
         }
-    
-    }
-  
+    }  
     
 Result:
 
