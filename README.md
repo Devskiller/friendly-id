@@ -6,6 +6,15 @@ friendly ID
 Library to convert uuid to url friendly IDs basing on base62
 --
 
+Dependency:
+
+    <dependency>
+        <groupId>com.devskiller.friendly-id</groupId>
+        <artifactId>friendly-id</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+
+
 Usage
 --
 
@@ -23,3 +32,71 @@ Note
 	
 * *Id* `00cafe` is equal to `cafe` - leading zeros are ignored.
 * *UUID* is a 128-bit number, so *id* also can store only 128-bit number
+
+
+Spring Boot integration
+---
+
+Add starter dependency:
+
+    <dependency>
+        <groupId>com.devskiller.friendly-id</groupId>
+        <artifactId>friendly-id-spring-boot-starter</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+    
+Sample controller:
+
+    @SpringBootApplication
+    @RestController
+    public class Application {
+    
+        public static void main(String[] args) {
+            SpringApplication.run(Application.class, args);
+        }
+    
+        @GetMapping("/bars/{bar}")
+        public Bar getBar(@PathVariable UUID bar) {
+            return new Bar(UUID.randomUUID());
+        }
+    
+        public class Bar {
+    
+            private final UUID id;
+    
+            public Bar(UUID id) {
+                this.id = id;
+            }
+    
+            public UUID getId() {
+                return id;
+            }
+        }
+    
+    }
+  
+    
+Result:
+
+    curl 'localhost:8080/bars/5fD1KwsxRcGhBqWNju0jzt' 
+    
+    {"id":"52OMXhWiAqUWwII0c97Svl"}
+    
+Application uses internally UUID, but from external point of view only friendly id is visible.    
+    
+Jackson integration    
+---
+
+Add jackson module dependency:
+
+    <dependency>
+        <groupId>com.devskiller.friendly-id</groupId>
+        <artifactId>friendly-id-jackson-datatype</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+
+Register friendly_id module:
+
+    ObjectMapper mapper = new ObjectMapper()
+       .registerModule(new FriendlyIdModule());
+   

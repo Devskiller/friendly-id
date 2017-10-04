@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -17,15 +16,22 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@PutMapping("/bars/{foo}")
-	public void update(@PathVariable UUID foo) {
-		System.out.println(foo);
+	@GetMapping("/bars/{bar}")
+	public Bar getBar(@PathVariable UUID bar) {
+		return new Bar(UUID.randomUUID());
 	}
 
-	@GetMapping("/bars/{foo}")
-	public Foo getFoo(@PathVariable UUID foo) {
-		System.out.println(foo);
-		return new Foo(UUID.randomUUID());
+	public class Bar {
+
+		private final UUID id;
+
+		public Bar(UUID id) {
+			this.id = id;
+		}
+
+		public UUID getId() {
+			return id;
+		}
 	}
 
 }
