@@ -6,9 +6,10 @@ import org.junit.Test;
 
 import com.devskiller.friendly_id.Url62;
 
+import static com.devskiller.friendly_id.spring.ObjectMapperConfiguration.mapper;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FriendlyIdDeserializerTest extends ModuleTestBase {
+public class FriendlyIdDeserializerTest {
 
 	@Test
 	public void shouldSerializeFriendlyId() throws Exception {
