@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -18,7 +17,7 @@ public class FriendlyIdDeserializer extends StdDeserializer<UUID> {
 	}
 
 	@Override
-	public UUID deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+	public UUID deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {
 
 		JsonToken token = parser.getCurrentToken();
 		if (token == JsonToken.VALUE_STRING) {
