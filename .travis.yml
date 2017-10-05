@@ -1,7 +1,12 @@
+sudo: required
+dist: precise
+group: edge
+
 language: java
 
 jdk:
 - oraclejdk8
+- oraclejdk9
 
 script: ./mvnw package
 
@@ -9,3 +14,8 @@ cache:
   directories:
   - ~/.m2/repository
   - ~/.m2/wrapper
+
+addons:
+  apt:
+    packages:
+      - oracle-java9-installer
