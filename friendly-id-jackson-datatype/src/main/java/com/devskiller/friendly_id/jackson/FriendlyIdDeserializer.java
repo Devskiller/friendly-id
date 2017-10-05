@@ -13,8 +13,8 @@ import com.devskiller.friendly_id.Url62;
 
 public class FriendlyIdDeserializer extends StdDeserializer<UUID> {
 
-	protected FriendlyIdDeserializer(Class<?> vc) {
-		super(vc);
+	public FriendlyIdDeserializer() {
+		super(UUID.class);
 	}
 
 	@Override

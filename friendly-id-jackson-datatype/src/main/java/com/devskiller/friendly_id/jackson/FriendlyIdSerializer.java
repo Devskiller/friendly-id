@@ -11,8 +11,8 @@ import com.devskiller.friendly_id.Url62;
 
 public class FriendlyIdSerializer extends StdSerializer<UUID> {
 
-	protected FriendlyIdSerializer(Class<UUID> t) {
-		super(t);
+	public FriendlyIdSerializer() {
+		super(UUID.class);
 	}
 
 	@Override
