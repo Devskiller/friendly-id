@@ -7,8 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 class FooService {
 
-	Bar getBar(UUID uuid) {
-		System.out.println("getBar: " + uuid);
+	Bar find(UUID uuid) {
+		System.out.println("find: " + uuid);
 		return new Bar(uuid, uuid);
+	}
+
+	void update(UUID id, Bar bar) {
+		System.out.println("update: " + id + ":" + bar);
 	}
 }

@@ -18,7 +18,9 @@ import com.devskiller.friendly_id.spring.FriendlyIdConfiguration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,16 +38,37 @@ public class ApplicationTest {
 	FooService fooService;
 
 	@Test
-	public void shouldReturnFriendlyId() throws Exception {
+	public void shouldSerialize() throws Exception {
 
+		// given
 		UUID uuid = UUID.randomUUID();
-		given(fooService.getBar(uuid)).willReturn(new Bar(uuid, uuid));
+		given(fooService.find(uuid)).willReturn(new Bar(uuid, uuid));
 
+		// expect
 		mockMvc.perform(get("/bars/" + uuid))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(jsonPath("$.friendlyId", is(Url62.encode(uuid))))
 				.andExpect(jsonPath("$.uuid", is(uuid.toString())));
+	}
+
+	@Test
+	public void shouldDeserialize() throws Exception {
+
+		// given
+		UUID uuid = UUID.randomUUID();
+		String json = "{\"friendlyId\":\"" + Url62.encode(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
+
+		// when
+		mockMvc.perform(put("/bars/" + uuid)
+				.content(json)
+				.contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andDo(print())
+				.andExpect(status().isOk());
+
+		// then
+		then(fooService)
+				.should().update(uuid, new Bar(uuid, uuid));
 	}
 }
