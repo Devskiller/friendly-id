@@ -5,7 +5,7 @@
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id-project</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.2</version>
 
     <name>friendly id</name>
     <description>Library to convert uuid to url friendly IDs basing on base62</description>
@@ -48,7 +48,7 @@
         <connection>scm:git:https://github.com/Devskiller/friendly-id.git</connection>
         <developerConnection>scm:git:git@github.com:Devskiller/friendly-id.git</developerConnection>
         <url>https://github.com/Devskiller/friendly-id</url>
-        <tag>HEAD</tag>
+        <tag>0.9.2</tag>
     </scm>
 
     <distributionManagement>
