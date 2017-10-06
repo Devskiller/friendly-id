@@ -2,6 +2,7 @@ package com.devskiller.friendly_id.sample;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.core.JsonGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.spring.EnableFriendlyId;
 import com.devskiller.friendly_id.spring.FriendlyIdConfiguration;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BarController.class)
+@EnableFriendlyId
 public class ApplicationTest {
 
 	@Autowired

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.spring.EnableFriendlyId;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
@@ -25,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BarController.class)
+@EnableFriendlyId
 public class ApplicationTest {
 
 	@Autowired
