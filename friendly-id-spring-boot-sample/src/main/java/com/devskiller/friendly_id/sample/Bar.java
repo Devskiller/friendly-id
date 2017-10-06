@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import lombok.Value;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import com.devskiller.friendly_id.jackson.IdFormat;
 
 import static com.devskiller.friendly_id.jackson.FriendlyIdFormat.RAW;
 
 @Value
-class Bar {
+class Bar extends ResourceSupport {
 
 	private final UUID friendlyId;
 
