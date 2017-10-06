@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BarController.class)
-@Import(FriendlyIdConfiguration.class)
 public class ApplicationTest {
 
 	@Autowired
