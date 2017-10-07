@@ -6,11 +6,10 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.hateoas.config.EnableEntityLinks;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @Configuration
-@EnableEntityLinks
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class JsonConfiguration {
 
 	@Bean

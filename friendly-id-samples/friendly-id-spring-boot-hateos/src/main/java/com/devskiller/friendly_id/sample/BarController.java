@@ -6,36 +6,28 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.sample.domain.Bar;
+import com.devskiller.friendly_id.sample.domain.Foo;
 
 @RestController
-@ExposesResourceFor(Bar.class)
-@RequestMapping("/bars")
+@ExposesResourceFor(BarResource.class)
+@RequestMapping("/foos/{fooId}/bars")
 public class BarController {
 
-	private final FooService fooService;
-
 	private final EntityLinks entityLinks;
+	private final BarResourceAssembler assembler;
 
-	public BarController(FooService fooService, EntityLinks entityLinks) {
-		this.fooService = fooService;
+	public BarController(EntityLinks entityLinks) {
 		this.entityLinks = entityLinks;
+		this.assembler = new BarResourceAssembler();
 	}
 
 	@GetMapping("/{id}")
-	public Bar getBar(@PathVariable UUID id) {
-		Bar resource = fooService.find(id);
-		resource.add(entityLinks.linkForSingleResource(Bar.class, Url62.encode(id)).withSelfRel());
-		return resource;
+	public BarResource getBar(@PathVariable UUID fooId, @PathVariable UUID id) {
+		return assembler.toResource(new Bar(id, "Bar", new Foo(fooId, "Root Foo")));
 	}
 
-	@PutMapping("/{id}")
-	public void getBar(@PathVariable UUID id, @RequestBody Bar body) {
-		fooService.update(id, body);
-	}
 }
