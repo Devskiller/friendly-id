@@ -1,4 +1,4 @@
-package com.devskiller.friendly_id.sample;
+package com.devskiller.friendly_id.sample.customized;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.Module;

@@ -1,4 +1,4 @@
-package com.devskiller.friendly_id.sample;
+package com.devskiller.friendly_id.sample.customized;
 
 import java.util.UUID;
 

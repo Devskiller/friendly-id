@@ -1,72 +1,60 @@
-package com.devskiller.friendly_id.sample;
-
-import java.util.UUID;
+package com.devskiller.friendly_id.sample.hateos;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.devskiller.friendly_id.Url62;
 import com.devskiller.friendly_id.spring.EnableFriendlyId;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(BarController.class)
-@EnableFriendlyId
-public class ApplicationTest {
+@WebMvcTest
+@EnableFriendlyId // STRANGE: Why this is required?
+public class FooControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
 
-	@MockBean
-	FooService fooService;
-
 	@Test
-	public void shouldSerialize() throws Exception {
-
-		// given
-		UUID uuid = UUID.randomUUID();
-		given(fooService.find(uuid)).willReturn(new Bar(uuid, uuid));
-
-		// expect
-		mockMvc.perform(get("/bars/{id}", Url62.encode(uuid)))
+	public void shouldGet() throws Exception {
+		mockMvc.perform(get("/foos/{id}", "cafe"))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/hal+json;charset=UTF-8"))
-				.andExpect(jsonPath("$.friendlyId", is(Url62.encode(uuid))))
-				.andExpect(jsonPath("$.uuid", is(uuid.toString())));
+				.andExpect(jsonPath("$.uuid", is("cafe")))
+				.andExpect(jsonPath("$._links.self.href", is("http://localhost/foos/cafe")));
 	}
 
 	@Test
-	public void shouldDeserialize() throws Exception {
+	public void shouldCreate() throws Exception {
+		mockMvc.perform(post("/foos/")
+				.content("{\"uuid\":\"newFoo\",\"name\":\"Very New Foo\"}")
+				.contentType("application/hal+json;charset=UTF-8"))
+				.andDo(print())
+				.andExpect(header().string("Location", "http://localhost/foos/newFoo"))
+				.andExpect(status().isCreated());
+	}
 
-		// given
-		UUID uuid = UUID.randomUUID();
-		String json = "{\"friendlyId\":\"" + Url62.encode(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
-
-		// when
-		mockMvc.perform(put("/bars/{id}", Url62.encode(uuid))
-				.content(json)
+	@Test
+	public void update() throws Exception {
+		mockMvc.perform(put("/foos/{id}", "foo")
+				.content("{\"uuid\":\"foo\",\"name\":\"Sample Foo\"}")
 				.contentType("application/hal+json;charset=UTF-8"))
 				.andDo(print())
 				.andExpect(status().isOk());
-
-		// then
-		then(fooService)
-				.should().update(uuid, new Bar(uuid, uuid));
 	}
+
 }

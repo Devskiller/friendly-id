@@ -1,4 +1,4 @@
-package com.devskiller.friendly_id.sample;
+package com.devskiller.friendly_id.sample.customized;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,22 +1,22 @@
-package com.devskiller.friendly_id.sample;
+package com.devskiller.friendly_id.sample.customized;
 
 import java.util.UUID;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.sample.customized.Bar;
+import com.devskiller.friendly_id.sample.customized.BarController;
+import com.devskiller.friendly_id.sample.customized.FooService;
 import com.devskiller.friendly_id.spring.EnableFriendlyId;
-import com.devskiller.friendly_id.spring.FriendlyIdConfiguration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
