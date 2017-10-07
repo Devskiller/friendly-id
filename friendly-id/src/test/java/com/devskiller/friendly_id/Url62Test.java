@@ -1,5 +1,9 @@
 package com.devskiller.friendly_id;
 
+import java.math.BigInteger;
+import java.net.URI;
+import java.util.UUID;
+
 import org.junit.Test;
 
 import static com.devskiller.friendly_id.IdUtil.areEqualIgnoringLeadingZeros;
@@ -55,5 +59,22 @@ public class Url62Test {
 				.hasMessageContaining("more than 128bit information");
 	}
 
+	@Test
+	public void name() throws Exception {
+		Url62.decode("0");
+		BigInteger v = BigInteger.valueOf(Long.MAX_VALUE).multiply(BigInteger.valueOf(Long.MAX_VALUE));
+		System.out.println(Url62.decode("0"));
+		UUID uuid = new UUID(Long.MAX_VALUE, Long.MAX_VALUE);
+		System.out.println(uuid);
 
+		System.out.println("340282366920936045556395145956585308163");
+		System.out.println(v);
+		UUID max = UUID.fromString("7fffffff-ffff-7fff-ffff-ffffffffffff");
+//		System.out.println(max);
+//		System.out.println(ElegantPairing.pair(BigInteger.valueOf(max.getMostSignificantBits()), BigInteger.valueOf(max.getLeastSignificantBits())));
+//		System.out.println(Url62.decode(Url62.encode(UUID.fromString("8fffffff-ffff-ffff-ffff-ffffffffffff"))));
+		System.out.println(Base62.encode(v));
+		System.out.println(Url62.decode(Base62.encode(v)));
+		System.out.println(Url62.encode(UUID.fromString("00000000-0000-0000-c000-000000000000")));
+	}
 }

@@ -1,6 +1,10 @@
 package com.devskiller.friendly_id.sample;
 
+import java.lang.invoke.MethodHandles;
 import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/bars")
 public class BarController {
 
+	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 	private final FooService fooService;
 
 	public BarController(FooService fooService) {
@@ -20,7 +26,8 @@ public class BarController {
 	}
 
 	@GetMapping("/{id}")
-	public Bar getBar(@PathVariable UUID id) {
+	public Bar get(@PathVariable UUID id) {
+		log.info("get {}", id);
 		return fooService.find(id);
 	}
 
