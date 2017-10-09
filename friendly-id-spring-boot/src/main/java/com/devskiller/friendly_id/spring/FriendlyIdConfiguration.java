@@ -27,7 +27,8 @@ public class FriendlyIdConfiguration extends WebMvcConfigurerAdapter {
 		return new FriendlyIdModule();
 	}
 
-	private class StringToUuidConverter implements Converter<String, UUID> {
+	//FIXME: make this public
+	public static class StringToUuidConverter implements Converter<String, UUID> {
 
 		@Override
 		public UUID convert(String id) {
