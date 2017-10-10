@@ -11,11 +11,6 @@ org.springframework.cloud.contract.spec.Contract.make {
 		body(
 				uuid: 'caffe',
 				name: 'Foo',
-				// FIXME: should be _links
-//				links: [[
-//						        rel : 'self',
-//						        href: 'http://localhost/foos/caffe'
-//				        ]]
 				_links: [
 						self: [
 								href: 'http://localhost/foos/caffe'
