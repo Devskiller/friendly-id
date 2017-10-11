@@ -1,5 +1,6 @@
 package com.devskiller.friendly_id.sample.hateos;
 
+import org.springframework.hateoas.RelProvider;
 import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
 import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
 
@@ -18,9 +19,13 @@ public class BarResourceAssembler extends IdentifiableResourceAssemblerSupport<B
 	@Override
 	public BarResource toResource(Bar entity) {
 		BarResource resource = createResourceWithId(UuidHelper.toFriendlyId(entity), entity, UuidHelper.toFriendlyId(entity.getFoo()));
-		resource.setName(entity.getName());
 		ControllerLinkBuilderFactory factory = new ControllerLinkBuilderFactory();
 		resource.add(factory.linkTo(FooController.class, UuidHelper.toFriendlyId(entity.getFoo())).withRel("foos"));
 		return resource;
+	}
+
+	@Override
+	protected BarResource instantiateResource(Bar entity) {
+		return new BarResource(entity.getName());
 	}
 }

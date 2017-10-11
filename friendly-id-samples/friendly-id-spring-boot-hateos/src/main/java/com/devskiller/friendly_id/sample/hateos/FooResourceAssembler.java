@@ -1,7 +1,15 @@
 package com.devskiller.friendly_id.sample.hateos;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.core.EmbeddedWrapper;
+import org.springframework.hateoas.core.EmbeddedWrappers;
 import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
 
+import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.sample.hateos.domain.Bar;
 import com.devskiller.friendly_id.sample.hateos.domain.Foo;
 
 public class FooResourceAssembler extends IdentifiableResourceAssemblerSupport<Foo, FooResource> {
@@ -16,15 +24,19 @@ public class FooResourceAssembler extends IdentifiableResourceAssemblerSupport<F
 
 	@Override
 	public FooResource toResource(Foo entity) {
-		FooResource resource = createResourceWithId(UuidHelper.toFriendlyId(entity), entity);
-
-		resource.setUuid(entity.getId());
-		resource.setName(entity.getName());
-		return resource;
+		return createResourceWithId(UuidHelper.toFriendlyId(entity), entity);
 	}
 
-//	@Override
-//	protected FooResource instantiateResource(Foo entity) {
-//				return new FooResource(entity.getId(), entity.getName());
-//	}
+	@Override
+	protected FooResource instantiateResource(Foo entity) {
+
+		BarResource bar1 = new BarResourceAssembler().toResource(new Bar(Url62.decode("bar1"), "bar one", entity));
+		BarResource bar2 = new BarResourceAssembler().toResource(new Bar(Url62.decode("bar2"), "bar two", entity));
+
+		EmbeddedWrappers wrappers = new EmbeddedWrappers(true);
+		List<EmbeddedWrapper> embeddeds = Arrays.asList(wrappers.wrap(bar1), wrappers.wrap(bar2));
+		FooResource fooResource = new FooResource(entity.getId(), entity.getName());
+		fooResource.setEmbeddeds(new Resources(embeddeds));
+		return fooResource;
+	}
 }

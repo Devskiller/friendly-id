@@ -10,7 +10,6 @@ import org.springframework.hateoas.core.Relation;
 
 @Data
 @AllArgsConstructor
-@Relation("foo")
 public class Bar implements Identifiable<UUID> {
 
 	private UUID id;

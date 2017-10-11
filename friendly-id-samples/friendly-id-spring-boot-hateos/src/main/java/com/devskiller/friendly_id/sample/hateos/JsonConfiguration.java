@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.RelProvider;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
