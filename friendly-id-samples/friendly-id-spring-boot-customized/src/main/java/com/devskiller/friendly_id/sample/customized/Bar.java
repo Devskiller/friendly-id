@@ -15,4 +15,9 @@ class Bar {
 
 	@IdFormat(RAW)
 	private final UUID uuid;
+
+	public Bar(UUID friendlyId, @IdFormat(RAW) UUID uuid) {
+		this.friendlyId = friendlyId;
+		this.uuid = uuid;
+	}
 }
