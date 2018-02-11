@@ -19,6 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <spring-cloud-contract.version>1.1.5.RELEASE</spring-cloud-contract.version>
     </properties>
 
     <dependencies>
@@ -73,12 +74,10 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- If you're adding this dependency explicitly you have to
-            add it *BEFORE* the Release Train BOM-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-dependencies</artifactId>
-                <version>1.1.4.RELEASE</version>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Edgware.SR2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -94,6 +93,9 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
+                <configuration>
+                    <parameters>true</parameters>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -119,12 +121,31 @@
             <plugin>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <version>1.1.4.RELEASE</version>
+                <version>${spring-cloud-contract.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <basePackageForTests>com.devskiller.friendly_id.sample.contracts</basePackageForTests>
                     <baseClassForTests>com.devskiller.friendly_id.sample.contracts.ContractVerifierBase</baseClassForTests>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-contract-verifier</artifactId>
+                        <version>${spring-cloud-contract.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.rest-assured</groupId>
+                        <artifactId>rest-assured</artifactId>
+                        <version>3.0.2</version>
+                        <scope>compile</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.rest-assured</groupId>
+                        <artifactId>spring-mock-mvc</artifactId>
+                        <version>3.0.2</version>
+                        <scope>compile</scope>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
