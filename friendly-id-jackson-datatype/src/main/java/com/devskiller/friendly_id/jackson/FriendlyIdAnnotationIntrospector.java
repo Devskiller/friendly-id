@@ -14,7 +14,7 @@ public class FriendlyIdAnnotationIntrospector extends JacksonAnnotationIntrospec
 
 	@Override
 	public Object findSerializer(Annotated annotatedMethod) {
-		IdFormat annotation = annotatedMethod.getAnnotation(IdFormat.class);
+		IdFormat annotation = _findAnnotation(annotatedMethod, IdFormat.class);
 		if (annotatedMethod.getRawType() == UUID.class) {
 			if (annotation != null) {
 				switch (annotation.value()) {
@@ -30,10 +30,9 @@ public class FriendlyIdAnnotationIntrospector extends JacksonAnnotationIntrospec
 		}
 	}
 
-
 	@Override
 	public Object findDeserializer(Annotated annotatedMethod) {
-		IdFormat annotation = annotatedMethod.getAnnotation(IdFormat.class);
+		IdFormat annotation = _findAnnotation(annotatedMethod, IdFormat.class);
 		if (rawDeserializationType(annotatedMethod) == UUID.class) {
 			if (annotation != null) {
 				switch (annotation.value()) {
@@ -49,7 +48,7 @@ public class FriendlyIdAnnotationIntrospector extends JacksonAnnotationIntrospec
 		}
 	}
 
-	protected Class<?> rawDeserializationType(Annotated a) {
+	private Class<?> rawDeserializationType(Annotated a) {
 		if (a instanceof AnnotatedMethod) {
 			AnnotatedMethod am = (AnnotatedMethod) a;
 			if (am.getParameterCount() == 1) {
