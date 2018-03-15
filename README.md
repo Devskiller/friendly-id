@@ -3,7 +3,7 @@
 friendly ID
 ==
 
-Library to convert universally unique identifiers (UUID) to url friendly IDs basing on Base62
+Library to convert UUID to url friendly IDs basing on Base62
 --
 
     UUID                                        Friendly ID
