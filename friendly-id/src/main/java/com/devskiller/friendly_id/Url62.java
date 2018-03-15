@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.UUID;
 
 /**
- * Class to convert uuid to url friendly IDs basing on base62
+ * Class to convert UUID to Url62 IDs
  */
 public class Url62 {
 
@@ -18,11 +18,10 @@ public class Url62 {
 	}
 
 	/**
-	 * Encode UUID to url62 id
+	 * Encode UUID to Url62 id
 	 *
 	 * @param uuid UUID to be encoded
-	 *
-	 * @return url62 encoded uuid
+	 * @return url62 encoded UUID
 	 */
 	public static String encode(UUID uuid) {
 		BigInteger pair = ElegantPairing.pair(
@@ -36,7 +35,6 @@ public class Url62 {
 	 * Decode url62 id to UUID
 	 *
 	 * @param id url62 encoded id
-	 *
 	 * @return decoded UUID
 	 */
 	public static UUID decode(String id) {
