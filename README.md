@@ -6,10 +6,12 @@ friendly ID
 Library to convert universally unique identifiers (UUID) to url friendly IDs basing on Base62
 --
 
-    c3587ec5-0976-497f-8374-61e0c2ea3da5 -> 7NLCAyd6sKR7kDHxgAWFPG
-    |                                       |                              
-    |                                       22 characters
-    36 characters  
+    UUID                                        Friendly ID
+    
+    c3587ec5-0976-497f-8374-61e0c2ea3da5   ->   7NLCAyd6sKR7kDHxgAWFPG
+    |                                           |                              
+    36 characters                               22 characters
+
                                   
 
 Spring Boot integration
