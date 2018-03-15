@@ -16,7 +16,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
-import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.jackson.FriendlyIdModule;
 
 import static org.mockito.Mockito.mock;
@@ -39,7 +39,7 @@ public class MvcTest {
 
 		@Override
 		public UUID convert(String id) {
-			return Url62.decode(id);
+			return FriendlyId.decode(id);
 		}
 	}
 

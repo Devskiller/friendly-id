@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.sample.contracts.domain.Foo;
 
-import static com.devskiller.friendly_id.Url62.encode;
+import static com.devskiller.friendly_id.FriendlyId.encode;
+
 
 @RestController
 @ExposesResourceFor(FooResource.class)

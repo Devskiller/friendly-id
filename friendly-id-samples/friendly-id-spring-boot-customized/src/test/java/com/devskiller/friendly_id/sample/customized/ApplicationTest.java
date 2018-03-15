@@ -12,10 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.devskiller.friendly_id.Url62;
-import com.devskiller.friendly_id.sample.customized.Bar;
-import com.devskiller.friendly_id.sample.customized.BarController;
-import com.devskiller.friendly_id.sample.customized.FooService;
+import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.spring.EnableFriendlyId;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -47,11 +44,11 @@ public class ApplicationTest {
 		given(fooService.find(uuid)).willReturn(new Bar(uuid, uuid));
 
 		// expect
-		mockMvc.perform(get("/bars/{id}", Url62.encode(uuid)))
+		mockMvc.perform(get("/bars/{id}", FriendlyId.encode(uuid)))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$.friendlyId", is(Url62.encode(uuid))))
+				.andExpect(jsonPath("$.friendlyId", is(FriendlyId.encode(uuid))))
 				.andExpect(jsonPath("$.uuid", is(uuid.toString())));
 	}
 
@@ -60,10 +57,10 @@ public class ApplicationTest {
 
 		// given
 		UUID uuid = UUID.randomUUID();
-		String json = "{\"friendlyId\":\"" + Url62.encode(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
+		String json = "{\"friendlyId\":\"" + FriendlyId.encode(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
 
 		// when
-		mockMvc.perform(put("/bars/{id}", Url62.encode(uuid))
+		mockMvc.perform(put("/bars/{id}", FriendlyId.encode(uuid))
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())

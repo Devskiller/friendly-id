@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Class to convert UUID to Url62 IDs
  */
-public class Url62 {
+class Url62 {
 
 	/**
 	 * Create url62 id

@@ -4,11 +4,11 @@ import java.util.UUID;
 
 import org.springframework.hateoas.Identifiable;
 
-import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.FriendlyId;
 
 public class UuidHelper {
 
 	public static String toFriendlyId(Identifiable<UUID> entity) {
-		return Url62.encode(entity.getId());
+		return FriendlyId.encode(entity.getId());
 	}
 }

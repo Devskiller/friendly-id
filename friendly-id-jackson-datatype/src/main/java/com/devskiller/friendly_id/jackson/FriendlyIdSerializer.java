@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import com.devskiller.friendly_id.Url62;
+import com.devskiller.friendly_id.FriendlyId;
 
 public class FriendlyIdSerializer extends StdSerializer<UUID> {
 
@@ -17,6 +17,6 @@ public class FriendlyIdSerializer extends StdSerializer<UUID> {
 
 	@Override
 	public void serialize(UUID uuid, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-		jsonGenerator.writeString(Url62.encode(uuid));
+		jsonGenerator.writeString(FriendlyId.encode(uuid));
 	}
 }

@@ -1,8 +1,6 @@
 package com.devskiller.friendly_id.sample.hateos;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -10,9 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.hateoas.Resources;
-import org.springframework.hateoas.core.EmbeddedWrapper;
-import org.springframework.hateoas.core.EmbeddedWrappers;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devskiller.friendly_id.Url62;
-import com.devskiller.friendly_id.sample.hateos.domain.Bar;
 import com.devskiller.friendly_id.sample.hateos.domain.Foo;
 
-import static com.devskiller.friendly_id.Url62.encode;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static com.devskiller.friendly_id.FriendlyId.encode;
+
 
 @RestController
 @ExposesResourceFor(FooResource.class)
