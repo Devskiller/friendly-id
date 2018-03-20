@@ -58,7 +58,9 @@ Result:
 ```    
 Application uses internally UUID, but from external point of view only friendly id is visible.    
   
-This allows to write much simpler tests for our code:
+ ## Testing improvments 
+  
+This allows to write much simpler tests for our code, because you can use names instead of hard to remember UUIDs.
 
 ```java
 mockMvc.perform(get("/bars/{bar}", "sampleBar"))
@@ -67,6 +69,9 @@ mockMvc.perform(get("/bars/{bar}", "sampleBar"))
 ```
   
 There is no need to define UUID value for `bar`, `sampleBar` is decoded to valid UUID identifier.
+
+FriendlyID library 
+---
 
 Dependency:
 
@@ -77,9 +82,6 @@ Dependency:
     <version>1.0.1</version>
 </dependency>
 ```
-
-FriendlyID library 
----
 
 Usage
 --
