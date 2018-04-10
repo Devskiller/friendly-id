@@ -21,7 +21,7 @@ public class FriendlyIdDeserializer extends UUIDDeserializer {
 			if (looksLikeUuid(string)) {
 				return super.deserialize(parser, deserializationContext);
 			} else {
-				return FriendlyId.decode(string);
+				return FriendlyId.toUuid(string);
 			}
 		}
 		throw new IllegalStateException("This is not friendly id");

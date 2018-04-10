@@ -16,13 +16,13 @@ public class FriendlyIdDeserializerTest {
 		UUID uuid = UUID.randomUUID();
 		String json = mapper().writeValueAsString(uuid);
 		System.out.println(json);
-		assertThat(json).contains(FriendlyId.encode(uuid));
+		assertThat(json).contains(FriendlyId.toFriendlyId(uuid));
 	}
 
 	@Test
 	public void shouldDeserializeFriendlyId() throws Exception {
 		String friendlyId = "2YSfgVHnEYbYgfFKhEX3Sz";
 		UUID uuid = mapper().readValue("\"" + friendlyId + "\"", UUID.class);
-		assertThat(uuid).isEqualByComparingTo(FriendlyId.decode(friendlyId));
+		assertThat(uuid).isEqualByComparingTo(FriendlyId.toUuid(friendlyId));
 	}
 }

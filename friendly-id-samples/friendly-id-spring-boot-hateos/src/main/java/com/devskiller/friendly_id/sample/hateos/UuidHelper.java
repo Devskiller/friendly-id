@@ -9,6 +9,6 @@ import com.devskiller.friendly_id.FriendlyId;
 public class UuidHelper {
 
 	public static String toFriendlyId(Identifiable<UUID> entity) {
-		return FriendlyId.encode(entity.getId());
+		return FriendlyId.toFriendlyId(entity.getId());
 	}
 }

@@ -79,20 +79,20 @@ Dependency:
 <dependency>
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
 Usage
 --
 ```java
-Url62.create();
+FriendlyId.createFriendlyId();
 // 7NLCAyd6sKR7kDHxgAWFPG
 
-Url62.decode("7NLCAyd6sKR7kDHxgAWFPG");
+FriendlyId.toUuid("7NLCAyd6sKR7kDHxgAWFPG");
 // c3587ec5-0976-497f-8374-61e0c2ea3da5
 
-Url62.encode(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
+FriendlyId.toFriendlyId(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
 // 7NLCAyd6sKR7kDHxgAWFPG
 ```
 

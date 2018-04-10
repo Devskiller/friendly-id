@@ -17,6 +17,6 @@ public class FriendlyIdSerializer extends StdSerializer<UUID> {
 
 	@Override
 	public void serialize(UUID uuid, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-		jsonGenerator.writeString(FriendlyId.encode(uuid));
+		jsonGenerator.writeString(FriendlyId.toFriendlyId(uuid));
 	}
 }

@@ -39,7 +39,7 @@ public class MvcTest {
 
 		@Override
 		public UUID convert(String id) {
-			return FriendlyId.decode(id);
+			return FriendlyId.toUuid(id);
 		}
 	}
 

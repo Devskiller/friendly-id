@@ -44,11 +44,11 @@ public class ApplicationTest {
 		given(fooService.find(uuid)).willReturn(new Bar(uuid, uuid));
 
 		// expect
-		mockMvc.perform(get("/bars/{id}", FriendlyId.encode(uuid)))
+		mockMvc.perform(get("/bars/{id}", FriendlyId.toFriendlyId(uuid)))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(jsonPath("$.friendlyId", is(FriendlyId.encode(uuid))))
+				.andExpect(jsonPath("$.friendlyId", is(FriendlyId.toFriendlyId(uuid))))
 				.andExpect(jsonPath("$.uuid", is(uuid.toString())));
 	}
 
@@ -57,10 +57,10 @@ public class ApplicationTest {
 
 		// given
 		UUID uuid = UUID.randomUUID();
-		String json = "{\"friendlyId\":\"" + FriendlyId.encode(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
+		String json = "{\"friendlyId\":\"" + FriendlyId.toFriendlyId(uuid) + "\",\"uuid\":\"" + uuid + "\"}";
 
 		// when
-		mockMvc.perform(put("/bars/{id}", FriendlyId.encode(uuid))
+		mockMvc.perform(put("/bars/{id}", FriendlyId.toFriendlyId(uuid))
 				.content(json)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andDo(print())

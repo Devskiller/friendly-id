@@ -30,8 +30,8 @@ public class FooResourceAssembler extends IdentifiableResourceAssemblerSupport<F
 	@Override
 	protected FooResource instantiateResource(Foo entity) {
 
-		BarResource bar1 = new BarResourceAssembler().toResource(new Bar(FriendlyId.decode("bar1"), "bar one", entity));
-		BarResource bar2 = new BarResourceAssembler().toResource(new Bar(FriendlyId.decode("bar2"), "bar two", entity));
+		BarResource bar1 = new BarResourceAssembler().toResource(new Bar(FriendlyId.toUuid("bar1"), "bar one", entity));
+		BarResource bar2 = new BarResourceAssembler().toResource(new Bar(FriendlyId.toUuid("bar2"), "bar two", entity));
 
 		EmbeddedWrappers wrappers = new EmbeddedWrappers(true);
 		List<EmbeddedWrapper> embeddeds = Arrays.asList(wrappers.wrap(bar1), wrappers.wrap(bar2));

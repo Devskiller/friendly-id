@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.sample.contracts.domain.Foo;
-
-import static com.devskiller.friendly_id.FriendlyId.encode;
 
 
 @RestController
@@ -62,7 +59,7 @@ public class FooController {
 
 		// ...
 
-		headers.setLocation(entityLinks.linkForSingleResource(FooResource.class, encode(entity.getId())).toUri());
+		headers.setLocation(entityLinks.linkForSingleResource(FooResource.class, UuidHelper.toFriendlyId(entity)).toUri());
 		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 
