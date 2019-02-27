@@ -19,6 +19,7 @@ public class FriendlyIdConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(new StringToUuidConverter());
+		registry.addConverter(new UuidToStringConverter());
 		super.addFormatters(registry);
 	}
 
@@ -33,6 +34,15 @@ public class FriendlyIdConfiguration extends WebMvcConfigurerAdapter {
 		@Override
 		public UUID convert(String id) {
 			return FriendlyId.toUuid(id);
+		}
+	}
+
+
+	public static class UuidToStringConverter implements Converter<UUID, String> {
+
+		@Override
+		public String convert(UUID id) {
+			return FriendlyId.toFriendlyId(id);
 		}
 	}
 }
