@@ -21,7 +21,7 @@ public class ApplicationTest {
 
 
 	@Test
-	public void shouldSerialize() throws Exception {
+	public void shouldSerialize() {
 
 		// given
 		UUID uuid = UUID.randomUUID();

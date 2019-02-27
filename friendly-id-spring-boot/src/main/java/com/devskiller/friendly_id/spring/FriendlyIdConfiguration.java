@@ -8,19 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.jackson.FriendlyIdModule;
 
 @Configuration
-public class FriendlyIdConfiguration extends WebMvcConfigurerAdapter {
+public class FriendlyIdConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(new StringToUuidConverter());
 		registry.addConverter(new UuidToStringConverter());
-		super.addFormatters(registry);
 	}
 
 	@Bean
