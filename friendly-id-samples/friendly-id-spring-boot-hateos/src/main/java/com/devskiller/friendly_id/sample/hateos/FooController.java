@@ -1,12 +1,12 @@
 package com.devskiller.friendly_id.sample.hateos;
 
 import java.lang.invoke.MethodHandles;
+import java.net.URI;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.sample.hateos.domain.Foo;
+
+import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.on;
 
 
 @RestController
@@ -31,11 +33,9 @@ public class FooController {
 
 	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final EntityLinks entityLinks;
 	private final FooResourceAssembler assembler;
 
-	public FooController(EntityLinks entityLinks, FooResourceAssembler assembler) {
-		this.entityLinks = entityLinks;
+	public FooController(FooResourceAssembler assembler) {
 		this.assembler = assembler;
 	}
 
@@ -62,8 +62,13 @@ public class FooController {
 		Foo entity = new Foo(fooResource.getUuid(), "Foo");
 
 		// ...
+		URI location = MvcUriComponentsBuilder.fromMethodCall(on(getClass())
+				.get(fooResource.getUuid()))
+				.buildAndExpand()
+				.toUri();
 
-		headers.setLocation(entityLinks.linkForSingleResource(FooResource.class, UuidHelper.toFriendlyId(entity)).toUri());
+		headers.setLocation(location);
+		
 		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 

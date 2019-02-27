@@ -36,7 +36,7 @@ public class FooResourceAssembler extends IdentifiableResourceAssemblerSupport<F
 		EmbeddedWrappers wrappers = new EmbeddedWrappers(true);
 		List<EmbeddedWrapper> embeddeds = Arrays.asList(wrappers.wrap(bar1), wrappers.wrap(bar2));
 		FooResource fooResource = new FooResource(entity.getId(), entity.getName());
-		fooResource.setEmbeddeds(new Resources(embeddeds));
+		fooResource.setEmbeddeds(new Resources<>(embeddeds));
 		return fooResource;
 	}
 }

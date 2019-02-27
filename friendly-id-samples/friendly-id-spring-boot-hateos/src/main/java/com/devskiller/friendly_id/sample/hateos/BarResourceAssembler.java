@@ -20,7 +20,7 @@ public class BarResourceAssembler extends IdentifiableResourceAssemblerSupport<B
 	public BarResource toResource(Bar entity) {
 		BarResource resource = createResourceWithId(UuidHelper.toFriendlyId(entity), entity, UuidHelper.toFriendlyId(entity.getFoo()));
 		ControllerLinkBuilderFactory factory = new ControllerLinkBuilderFactory();
-		resource.add(factory.linkTo(FooController.class, UuidHelper.toFriendlyId(entity.getFoo())).withRel("foos"));
+		resource.add(factory.linkTo(FooController.class, entity.getFoo().getId()).withRel("foos"));
 		return resource;
 	}
 
