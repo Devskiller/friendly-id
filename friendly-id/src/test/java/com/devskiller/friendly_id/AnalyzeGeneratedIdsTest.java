@@ -16,24 +16,21 @@ public class AnalyzeGeneratedIdsTest {
 
 	@Test
 	public void analyzeGeneratedValueStatistics() {
-		for (int i = 0; i < 1_000_000; i++) {
-			System.out.print(".");
+		for (int i = 0; i < 10_000_000; i++) {
 			this.ids.add(Base62.encode(UuidConverter.convertToBigInteger(UUID.randomUUID())));
 		}
-		IntSummaryStatistics elegantStats = ids.stream()
-				.map(String::length).mapToInt(Integer::intValue).summaryStatistics();
+		IntSummaryStatistics stats = ids.stream().map(String::length).mapToInt(Integer::intValue).summaryStatistics();
 
 		System.out.println("\nResults:");
-		System.out.println("Min: " + elegantStats.getMin());
-		System.out.println("Max: " + elegantStats.getMax());
-		System.out.println("Avg: " + elegantStats.getAverage());
-		System.out.println("Count: " + elegantStats.getCount());
-		System.out.println("Sample: " + ids.stream().limit(100).collect(Collectors.joining("\n")));
+		System.out.println("Min: " + stats.getMin());
+		System.out.println("Max: " + stats.getMax());
+		System.out.println("Avg: " + stats.getAverage());
+		System.out.println("Count: " + stats.getCount());
+		System.out.println("Sample: \n" + ids.stream().limit(100).collect(Collectors.joining("\n")));
 
-		assertThat(elegantStats.getMax()).isEqualTo(22);
-		assertThat(elegantStats.getMin()).isEqualTo(22);
-		assertThat(elegantStats.getAverage()).isEqualTo(22);
+		assertThat(stats.getMax()).isEqualTo(22);
+		assertThat(stats.getMin()).isGreaterThanOrEqualTo(18);
+		assertThat(stats.getAverage()).isLessThanOrEqualTo(22);
 	}
-
 
 }
