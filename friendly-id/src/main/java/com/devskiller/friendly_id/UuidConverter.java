@@ -5,14 +5,14 @@ import java.util.UUID;
 
 class UuidConverter {
 
-	static BigInteger convertToBigInteger(UUID uuid) {
+	static BigInteger toBigInteger(UUID uuid) {
 		return BigIntegerPairing.pair(
 				BigInteger.valueOf(uuid.getMostSignificantBits()),
 				BigInteger.valueOf(uuid.getLeastSignificantBits())
 		);
 	}
 
-	static UUID convertFromBigInteger(BigInteger value) {
+	static UUID toUuid(BigInteger value) {
 		BigInteger[] unpaired = BigIntegerPairing.unpair(value);
 		return new UUID(unpaired[0].longValueExact(), unpaired[1].longValueExact());
 	}

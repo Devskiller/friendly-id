@@ -1,7 +1,9 @@
 package com.devskiller.friendly_id;
 
 import java.math.BigInteger;
+import java.util.function.BiFunction;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import static java.util.Objects.requireNonNull;
 
@@ -64,16 +66,21 @@ class Base62 {
 		if (!Pattern.matches("[" + DIGITS + "]*", string)) {
 			throwIllegalArgumentException("String '%s' contains illegal characters, only '%s' are allowed", string, DIGITS);
 		}
-		BigInteger result = BigInteger.ZERO;
-		int digits = string.length();
-		for (int index = 0; index < digits; index++) {
-			int digit = DIGITS.indexOf(string.charAt(digits - index - 1));
-			result = result.add(BigInteger.valueOf(digit).multiply(BASE.pow(index)));
-			if (bitLimit > 0 && result.bitLength() > bitLimit) {
-				throwIllegalArgumentException("String contains '%s' more than 128bit information (%sbit)", string, result.bitLength());
-			}
-		}
-		return result;
+
+		return IntStream.range(0, string.length())
+				.mapToObj(index -> BigInteger.valueOf(charAt.apply(string, index)).multiply(BASE.pow(index)))
+				.reduce(BigInteger.ZERO, (acc, value) -> {
+					BigInteger sum = acc.add(value);
+					if (bitLimit > 0 && sum.bitLength() > bitLimit) {
+						throwIllegalArgumentException("String contains '%s' more than 128bit information (%sbit)",
+								string, sum.bitLength());
+					}
+					return sum;
+				});
+
 	}
+
+	private static BiFunction<String, Integer, Integer> charAt = (string, index) ->
+			DIGITS.indexOf(string.charAt(string.length() - index - 1));
 
 }

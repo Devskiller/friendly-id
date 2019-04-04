@@ -50,7 +50,7 @@ public class UuidConverterBenchmark {
 	@OperationsPerInvocation(SIZE)
 	public void convertToBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(UuidConverter.convertToBigInteger(uuids[i]));
+			blackhole.consume(UuidConverter.toBigInteger(uuids[i]));
 		}
 	}
 
@@ -58,7 +58,7 @@ public class UuidConverterBenchmark {
 	@OperationsPerInvocation(SIZE)
 	public void convertFromBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(UuidConverter.convertFromBigInteger(ids[i]));
+			blackhole.consume(UuidConverter.toUuid(ids[i]));
 		}
 	}
 }
