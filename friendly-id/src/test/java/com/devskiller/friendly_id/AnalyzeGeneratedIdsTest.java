@@ -29,7 +29,7 @@ public class AnalyzeGeneratedIdsTest {
 		System.out.println("Sample: \n" + ids.stream().limit(100).collect(Collectors.joining("\n")));
 
 		assertThat(stats.getMax()).isEqualTo(22);
-		assertThat(stats.getMin()).isGreaterThanOrEqualTo(18);
+		assertThat(stats.getMin()).isGreaterThanOrEqualTo(17);
 		assertThat(stats.getAverage()).isLessThanOrEqualTo(22);
 	}
 
