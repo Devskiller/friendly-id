@@ -8,9 +8,9 @@ Library to convert UUID to url friendly IDs basing on Base62
 
     UUID                                        Friendly ID
     
-    c3587ec5-0976-497f-8374-61e0c2ea3da5   ->   7NLCAyd6sKR7kDHxgAWFPG
+    c3587ec5-0976-497f-8374-61e0c2ea3da5   ->   5wbwf6yUxVBcr48AMbz9cb
     |                                           |                              
-    36 characters                               22 characters
+    36 characters                               22 characters or less
 
                                   
 
@@ -87,13 +87,13 @@ Usage
 --
 ```java
 FriendlyId.createFriendlyId();
-// 7NLCAyd6sKR7kDHxgAWFPG
+// 5wbwf6yUxVBcr48AMbz9cb
 
-FriendlyId.toUuid("7NLCAyd6sKR7kDHxgAWFPG");
+FriendlyId.toUuid("5wbwf6yUxVBcr48AMbz9cb");
 // c3587ec5-0976-497f-8374-61e0c2ea3da5
 
 FriendlyId.toFriendlyId(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
-// 7NLCAyd6sKR7kDHxgAWFPG
+// 5wbwf6yUxVBcr48AMbz9cb
 ```
 
 Note
