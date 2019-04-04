@@ -109,10 +109,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
-                    <configuration>
-                        <reuseForks>false</reuseForks>
-                    </configuration>
+                    <version>3.0.0-M3</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
