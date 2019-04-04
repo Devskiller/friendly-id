@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AnalyzeGeneratedIds {
+public class AnalyzeGeneratedIdsTest {
 
 	private List<String> ids = new ArrayList<>();
 
