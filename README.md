@@ -23,7 +23,7 @@ Just add friendly-id starter dependency:
 <dependency>
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id-spring-boot-starter</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0</version>
 </dependency>
 ```
     
@@ -79,7 +79,7 @@ Dependency:
 <dependency>
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -112,7 +112,7 @@ Add jackson module dependency:
 <dependency>
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>friendly-id-jackson-datatype</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
