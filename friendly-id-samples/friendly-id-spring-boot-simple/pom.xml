@@ -5,7 +5,7 @@
 
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>spring-boot-simple</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -63,8 +63,4 @@
             </plugin>
         </plugins>
     </build>
-
-  <scm>
-    <tag>1.1.0</tag>
-  </scm>
 </project>
