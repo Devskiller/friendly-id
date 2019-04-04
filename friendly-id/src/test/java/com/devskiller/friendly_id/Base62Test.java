@@ -1,12 +1,21 @@
 package com.devskiller.friendly_id;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static com.devskiller.friendly_id.IdUtil.areEqualIgnoringLeadingZeros;
 import static io.vavr.test.Property.def;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Objects.areEqual;
 
 public class Base62Test {
+
+	@Test
+	public void decodingValuePrefixedWithZeros() {
+		assertThat(Base62.encode(Base62.decode("00001"))).isEqualTo("1");
+		assertThat(Base62.encode(Base62.decode("01001"))).isEqualTo("1001");
+		assertThat(Base62.encode(Base62.decode("00abcd"))).isEqualTo("abcd");
+	}
 
 	@Test
 	public void decodingIdShouldBeReversible() {
