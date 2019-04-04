@@ -29,7 +29,7 @@ public class BigIntegerPairingTest {
 		def("pair(longs).signum() > 0")
 				.forAll(DataProvider.LONG_PAIRS)
 				.suchThat(longs -> makePair(longs).signum() > 0)
-				.check(-1, 1_000_000)
+				.check(-1, 100_000)
 				.assertIsSatisfied();
 	}
 
@@ -42,7 +42,7 @@ public class BigIntegerPairingTest {
 		def("Arrays.equals(unpair(pair(longs)), asArray(longs))")
 				.forAll(DataProvider.LONG_PAIRS)
 				.suchThat(longs -> Arrays.equals(unpair(makePair(longs)), asArray(longs)))
-				.check(-1, 1_000_000)
+				.check(-1, 100_000)
 				.assertIsSatisfied();
 	}
 
