@@ -8,16 +8,6 @@ import java.util.UUID;
  */
 class Url62 {
 
-
-	/**
-	 * Create url62 id
-	 *
-	 * @return url62 encoded id
-	 */
-	static String create() {
-		return encode(UUID.randomUUID());
-	}
-
 	/**
 	 * Encode UUID to Url62 id
 	 *

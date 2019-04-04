@@ -13,7 +13,7 @@ public class FriendlyId {
 	 * @return Friendly Id encoded UUID
 	 */
 	public static String createFriendlyId() {
-		return Url62.create();
+		return Url62.encode(UUID.randomUUID());
 	}
 
 	/**

@@ -2,31 +2,9 @@ package com.devskiller.friendly_id;
 
 import org.junit.Test;
 
-import static com.devskiller.friendly_id.IdUtil.areEqualIgnoringLeadingZeros;
-import static io.vavr.test.Property.def;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.util.Objects.areEqual;
 
 public class Url62Test {
-
-
-	@Test
-	public void encodingUuidShouldBeReversible() {
-		def("areEqual(Url62.toUuid(Url62.toFriendlyId(uuid)), uuid)")
-				.forAll(DataProvider.UUIDS)
-				.suchThat(uuid -> areEqual(Url62.decode(Url62.encode(uuid)), uuid))
-				.check(-1, 100_000)
-				.assertIsSatisfied();
-	}
-
-	@Test
-	public void decodingIdShouldBeReversible() {
-		def("areEqualIgnoringLeadingZeros(Url62.toFriendlyId(Url62.toUuid(id)), id)")
-				.forAll(DataProvider.FRIENDLY_IDS)
-				.suchThat(id -> areEqualIgnoringLeadingZeros(Url62.encode(Url62.decode(id)), id))
-				.check(100, 100_000)
-				.assertIsSatisfied();
-	}
 
 	@Test
 	public void shouldExplodeWhenContainsIllegalCharacters() {
@@ -36,24 +14,23 @@ public class Url62Test {
 	}
 
 	@Test
-	public void shouldFaildOnEmpyString() {
+	public void shouldFaildOnEmptyString() {
 		assertThatThrownBy(() -> Url62.decode(""))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("must not be empty");
 	}
 
 	@Test
-	public void shouldFaildOnNullString() {
+	public void shouldFailsOnNullString() {
 		assertThatThrownBy(() -> Url62.decode(null))
 				.isInstanceOf(NullPointerException.class)
 				.hasMessageContaining("must not be null");
 	}
 
 	@Test
-	public void shouldFaildWhenStringContainsMoreThan128bitInformation() {
+	public void shouldFailsWhenStringContainsMoreThan128bitInformation() {
 		assertThatThrownBy(() -> Url62.decode("7NLCAyd6sKR7kDHxgAWFPas"))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("more than 128bit information");
 	}
-
 }
