@@ -5,7 +5,7 @@
 
     <groupId>com.devskiller.friendly-id</groupId>
     <artifactId>spring-boot-hateos</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -90,4 +90,8 @@
             </plugin>
         </plugins>
     </build>
+
+  <scm>
+    <tag>1.0.4</tag>
+  </scm>
 </project>

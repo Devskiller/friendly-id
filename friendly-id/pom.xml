@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.devskiller.friendly-id</groupId>
         <artifactId>friendly-id-project</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.4</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -95,7 +95,7 @@
                                     <executable>java</executable>
                                     <arguments>
                                         <argument>-classpath</argument>
-                                        <classpath/>
+                                        <classpath />
                                         <argument>org.openjdk.jmh.Main</argument>
                                         <argument>.*</argument>
                                     </arguments>
