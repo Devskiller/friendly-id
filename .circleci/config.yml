@@ -14,14 +14,14 @@ jobs:
       - restore_cache:
           key: friendly_id-{{ checksum "pom.xml" }}
 
-      - run: mvn dependency:go-offline
+      - run: mvn de.qaware.maven:go-offline-maven-plugin:1.1.0:resolve-dependencies -Dmaven.repo.local=.m2/repository
 
       - save_cache:
           paths:
             - ~/.m2
           key: friendly_id-{{ checksum "pom.xml" }}
 
-      - run: mvn package
+      - run: mvn install
 
       - store_test_results:
           path: target/surefire-reports
