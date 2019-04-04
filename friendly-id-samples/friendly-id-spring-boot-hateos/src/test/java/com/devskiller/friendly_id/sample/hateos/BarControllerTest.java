@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.devskiller.friendly_id.sample.hateos.BarController;
 import com.devskiller.friendly_id.spring.EnableFriendlyId;
 
 import static org.hamcrest.CoreMatchers.is;

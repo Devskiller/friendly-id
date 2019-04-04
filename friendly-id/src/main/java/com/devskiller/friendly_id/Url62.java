@@ -6,14 +6,15 @@ import java.util.UUID;
 /**
  * Class to convert UUID to Url62 IDs
  */
-public class Url62 {
+class Url62 {
+
 
 	/**
 	 * Create url62 id
 	 *
 	 * @return url62 encoded id
 	 */
-	public static String create() {
+	static String create() {
 		return encode(UUID.randomUUID());
 	}
 
@@ -23,11 +24,8 @@ public class Url62 {
 	 * @param uuid UUID to be encoded
 	 * @return url62 encoded UUID
 	 */
-	public static String encode(UUID uuid) {
-		BigInteger pair = ElegantPairing.pair(
-				BigInteger.valueOf(uuid.getMostSignificantBits()),
-				BigInteger.valueOf(uuid.getLeastSignificantBits())
-		);
+	static String encode(UUID uuid) {
+		BigInteger pair = UuidConverter.convertToBigInteger(uuid);
 		return Base62.encode(pair);
 	}
 
@@ -37,10 +35,9 @@ public class Url62 {
 	 * @param id url62 encoded id
 	 * @return decoded UUID
 	 */
-	public static UUID decode(String id) {
+	static UUID decode(String id) {
 		BigInteger decoded = Base62.decode(id);
-		BigInteger[] unpaired = ElegantPairing.unpair(decoded);
-		return new UUID(unpaired[0].longValue(), unpaired[1].longValue());
+		return UuidConverter.convertFromBigInteger(decoded);
 	}
 
 }

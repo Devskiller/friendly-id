@@ -9,10 +9,10 @@ import static java.util.Objects.requireNonNull;
  * Base62 encoder/decoder.
  * <p>
  * This is free and unencumbered public domain software
- *
+ * <p>
  * Source: https://github.com/opencoinage/opencoinage/blob/master/src/java/org/opencoinage/util/Base62.java
  */
-public class Base62 {
+class Base62 {
 
 	private static final BigInteger BASE = BigInteger.valueOf(62);
 	private static final String DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -39,6 +39,10 @@ public class Base62 {
 		return (result.length() == 0) ? DIGITS.substring(0, 1) : result.toString();
 	}
 
+	private static BigInteger throwIllegalArgumentException(String format, Object... args) {
+		throw new IllegalArgumentException(String.format(format, args));
+	}
+
 	/**
 	 * Decodes a string using Base62 encoding.
 	 *
@@ -51,10 +55,10 @@ public class Base62 {
 		return decode(string, 128);
 	}
 
-	static BigInteger decode(final String string,  int bitLimit) {
+	static BigInteger decode(final String string, int bitLimit) {
 		requireNonNull(string, "Decoded string must not be null");
 		if (string.length() == 0) {
-			return throwIllegalArgumentException("string '%s' must not be empty", null);
+			return throwIllegalArgumentException("String '%s' must not be empty", string);
 		}
 
 		if (!Pattern.matches("[" + DIGITS + "]*", string)) {
@@ -70,10 +74,6 @@ public class Base62 {
 			}
 		}
 		return result;
-	}
-
-	private static BigInteger throwIllegalArgumentException(String format, Object... args) {
-		throw new IllegalArgumentException(String.format(format, args));
 	}
 
 }

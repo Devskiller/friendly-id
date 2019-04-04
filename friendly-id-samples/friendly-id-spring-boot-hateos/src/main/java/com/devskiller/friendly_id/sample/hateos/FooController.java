@@ -68,7 +68,7 @@ public class FooController {
 				.toUri();
 
 		headers.setLocation(location);
-		
+
 		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 

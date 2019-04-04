@@ -9,12 +9,13 @@ import static org.assertj.core.util.Objects.areEqual;
 
 public class Url62Test {
 
+
 	@Test
 	public void encodingUuidShouldBeReversible() {
 		def("areEqual(Url62.toUuid(Url62.toFriendlyId(uuid)), uuid)")
 				.forAll(DataProvider.UUIDS)
 				.suchThat(uuid -> areEqual(Url62.decode(Url62.encode(uuid)), uuid))
-				.check(-1, 1000000)
+				.check(-1, 1_000_000)
 				.assertIsSatisfied();
 	}
 
@@ -23,7 +24,7 @@ public class Url62Test {
 		def("areEqualIgnoringLeadingZeros(Url62.toFriendlyId(Url62.toUuid(id)), id)")
 				.forAll(DataProvider.FRIENDLY_IDS)
 				.suchThat(id -> areEqualIgnoringLeadingZeros(Url62.encode(Url62.decode(id)), id))
-				.check(100, 100000)
+				.check(100, 1_000_000)
 				.assertIsSatisfied();
 	}
 

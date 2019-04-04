@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.spring.EnableFriendlyId;
 
+import static com.devskiller.friendly_id.FriendlyId.toUuid;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -69,5 +70,23 @@ public class ApplicationTest {
 		// then
 		then(fooService)
 				.should().update(uuid, new Bar(uuid, uuid));
+	}
+
+	@Test
+	public void sampleTestUsingPseudoUuid() throws Exception {
+
+		// given
+		UUID barId = toUuid("barId");
+		given(fooService.find(barId)).willReturn(new Bar(barId, barId));
+
+		// expect
+		mockMvc.perform(get("/bars/{id}", "barId"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(jsonPath("$.friendlyId", is("barId")))
+				.andExpect(jsonPath("$.uuid", is(barId.toString())));
+
+		System.out.println(barId);
 	}
 }

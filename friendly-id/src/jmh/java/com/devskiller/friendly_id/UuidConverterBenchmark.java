@@ -1,5 +1,7 @@
 package com.devskiller.friendly_id;
 
+import java.math.BigInteger;
+import java.util.Random;
 import java.util.UUID;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -20,44 +22,43 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @Warmup(iterations = 3)
 @Measurement(iterations = 10)
 @Fork(2)
-public class FriendlyIdBenchmark {
+public class UuidConverterBenchmark {
 
 	static final int SIZE = 1_000_000;
 
 	UUID[] uuids;
-	String[] ids;
+	BigInteger[] ids;
 
 	public static void main(String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder()
-				.include(FriendlyIdBenchmark.class.getSimpleName())
+				.include(UuidConverterBenchmark.class.getSimpleName())
 				.build();
-
 		new Runner(opt).run();
 	}
 
 	@Setup
 	public void setup() {
 		uuids = new UUID[SIZE];
-		ids = new String[SIZE];
+		ids = new BigInteger[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			uuids[i] = UUID.randomUUID();
-			ids[i] = FriendlyId.toFriendlyId(uuids[i]);
+			ids[i] = new BigInteger(127, new Random());
 		}
 	}
 
 	@Benchmark
 	@OperationsPerInvocation(SIZE)
-	public void serializeUuid(Blackhole blackhole) {
+	public void convertToBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(FriendlyId.toFriendlyId(uuids[i]));
+			blackhole.consume(UuidConverter.convertToBigInteger(uuids[i]));
 		}
 	}
 
 	@Benchmark
 	@OperationsPerInvocation(SIZE)
-	public void deserializeId(Blackhole blackhole) {
+	public void convertFromBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(FriendlyId.toUuid(ids[i]));
+			blackhole.consume(UuidConverter.convertFromBigInteger(ids[i]));
 		}
 	}
 }

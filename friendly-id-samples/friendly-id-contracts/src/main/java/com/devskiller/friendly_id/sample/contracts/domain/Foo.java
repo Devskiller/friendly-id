@@ -1,6 +1,5 @@
 package com.devskiller.friendly_id.sample.contracts.domain;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;

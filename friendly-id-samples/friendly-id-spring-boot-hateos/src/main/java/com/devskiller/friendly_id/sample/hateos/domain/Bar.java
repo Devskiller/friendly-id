@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import org.springframework.hateoas.Identifiable;
-import org.springframework.hateoas.core.Relation;
 
 @Data
 @AllArgsConstructor

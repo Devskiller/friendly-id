@@ -3,7 +3,6 @@ package com.devskiller.friendly_id.sample.hateos;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import lombok.Data;
 
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.Resources;

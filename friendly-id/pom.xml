@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.devskiller.friendly-id</groupId>
         <artifactId>friendly-id-project</artifactId>
-        <version>1.0.5-SNAPSHOT</version>
+        <version>1.1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -60,7 +61,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -74,7 +74,6 @@
                                             <version>${jmh.version}</version>
                                         </path>
                                     </annotationProcessorPaths>
-                                    <release>${java.version}</release>
                                 </configuration>
                             </execution>
                         </executions>
@@ -95,7 +94,7 @@
                                     <executable>java</executable>
                                     <arguments>
                                         <argument>-classpath</argument>
-                                        <classpath />
+                                        <classpath/>
                                         <argument>org.openjdk.jmh.Main</argument>
                                         <argument>.*</argument>
                                     </arguments>
@@ -109,7 +108,7 @@
                 <dependency>
                     <groupId>org.openjdk.jmh</groupId>
                     <artifactId>jmh-core</artifactId>
-                    <version>${jmh.version}</version>
+                    <version>1.21</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>

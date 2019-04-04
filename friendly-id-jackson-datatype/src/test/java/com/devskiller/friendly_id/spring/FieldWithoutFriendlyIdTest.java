@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.junit.Test;
 
+import com.devskiller.friendly_id.FriendlyId;
+
 import static com.devskiller.friendly_id.spring.ObjectMapperConfiguration.mapper;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +25,7 @@ public class FieldWithoutFriendlyIdTest {
 		String json = mapper.writeValueAsString(foo);
 
 		assertThat(json).isEqualToIgnoringWhitespace(
-				"{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"5VFVlOFz9lugV5ypWqxdXG\"}"
+				"{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"7Jsg6CPDscHawyJfE70b9x\"}"
 		);
 
 		Foo cloned = mapper.readValue(json, Foo.class);
@@ -32,12 +34,13 @@ public class FieldWithoutFriendlyIdTest {
 
 	@Test
 	public void shouldDeserializeUuidsInDataObject() throws Exception {
-		String json = "{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"5VFVlOFz9lugV5ypWqxdXG\"}";
+		String json = "{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"7Jsg6CPDscHawyJfE70b9x\"}";
 
 		Foo cloned = mapper.readValue(json, Foo.class);
 		assertThat(cloned.getRawUuid()).isEqualTo(uuid);
 		assertThat(cloned.getFriendlyId()).isEqualTo(uuid);
 	}
+
 
 	@Test
 	public void shouldSerializeUuidsInValueObject() throws Exception {
@@ -48,7 +51,7 @@ public class FieldWithoutFriendlyIdTest {
 		String json = mapper.writeValueAsString(bar);
 
 		assertThat(json).isEqualToIgnoringWhitespace(
-				"{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"5VFVlOFz9lugV5ypWqxdXG\"}"
+				"{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"7Jsg6CPDscHawyJfE70b9x\"}"
 		);
 	}
 
@@ -56,7 +59,7 @@ public class FieldWithoutFriendlyIdTest {
 	public void shouldDeserializeUuuidsValueObject() throws Exception {
 		mapper = mapper(new ParameterNamesModule());
 
-		String json = "{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"5VFVlOFz9lugV5ypWqxdXG\"}";
+		String json = "{\"rawUuid\":\"f088ce5b-9279-4cc3-946a-c15ad740dd6d\",\"friendlyId\":\"7Jsg6CPDscHawyJfE70b9x\"}";
 
 		Bar deserialized = mapper.readValue(json, Bar.class);
 

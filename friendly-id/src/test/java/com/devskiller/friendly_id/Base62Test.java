@@ -13,7 +13,7 @@ public class Base62Test {
 		def("areEqualIgnoringLeadingZeros(Base62.toFriendlyId(Base62.toUuid(id)), id)")
 				.forAll(DataProvider.FRIENDLY_IDS)
 				.suchThat(id -> areEqualIgnoringLeadingZeros(Base62.encode(Base62.decode(id)), id))
-				.check(24, 100000)
+				.check(24, 1_000_000)
 				.assertIsSatisfied();
 	}
 
@@ -21,8 +21,9 @@ public class Base62Test {
 	public void encodingNumberShouldBeReversible() {
 		def("areEqualIgnoringLeadingZeros(Base62.toFriendlyId(Base62.toUuid(id)), id)")
 				.forAll(DataProvider.POSITIVE_BIG_INTEGERS)
-				.suchThat(bigInteger -> areEqual(Base62.decode(Base62.encode(bigInteger)), bigInteger))
-				.check(-1, 100000)
+				.suchThat(bigInteger -> areEqual(Base62.decode(Base62.encode(bigInteger)), bigInteger)
+				)
+				.check(-1, 1_000_000)
 				.assertIsSatisfied();
 	}
 

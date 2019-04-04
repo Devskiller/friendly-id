@@ -1,6 +1,5 @@
 package com.devskiller.friendly_id.sample.hateos;
 
-import org.springframework.hateoas.RelProvider;
 import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
 import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
 

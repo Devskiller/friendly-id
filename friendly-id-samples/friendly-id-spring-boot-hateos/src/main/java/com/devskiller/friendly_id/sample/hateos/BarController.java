@@ -2,7 +2,6 @@ package com.devskiller.friendly_id.sample.hateos;
 
 import java.util.UUID;
 
-import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
