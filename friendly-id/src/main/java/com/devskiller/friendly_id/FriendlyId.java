@@ -7,13 +7,21 @@ import java.util.UUID;
  */
 public class FriendlyId {
 
+	private static final Url62 URL62;
+
+	static {
+		BigIntegerPairing bigIntegerPairing = Pairing.provider().create();
+		System.out.println(bigIntegerPairing.getClass().getSimpleName());
+		URL62 = new Url62(new UuidConverter(bigIntegerPairing));
+	}
+
 	/**
 	 * Create FriendlyId id
 	 *
 	 * @return Friendly Id encoded UUID
 	 */
 	public static String createFriendlyId() {
-		return Url62.encode(UUID.randomUUID());
+		return URL62.encode(UUID.randomUUID());
 	}
 
 	/**
@@ -23,7 +31,7 @@ public class FriendlyId {
 	 * @return Friendly Id encoded UUID
 	 */
 	public static String toFriendlyId(UUID uuid) {
-		return Url62.encode(uuid);
+		return URL62.encode(uuid);
 	}
 
 	/**
@@ -33,7 +41,7 @@ public class FriendlyId {
 	 * @return decoded UUID
 	 */
 	public static UUID toUuid(String friendlyId) {
-		return Url62.decode(friendlyId);
+		return URL62.decode(friendlyId);
 	}
 
 }

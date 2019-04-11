@@ -1,7 +1,8 @@
-package com.devskiller.friendly_id;
-
 import io.vavr.test.Arbitrary;
 import org.junit.Test;
+
+import com.devskiller.friendly_id.DataProvider;
+import com.devskiller.friendly_id.FriendlyId;
 
 import static com.devskiller.friendly_id.FriendlyId.toFriendlyId;
 import static com.devskiller.friendly_id.FriendlyId.toUuid;

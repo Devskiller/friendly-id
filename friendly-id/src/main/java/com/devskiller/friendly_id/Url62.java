@@ -8,14 +8,20 @@ import java.util.UUID;
  */
 class Url62 {
 
+	private final UuidConverter converter;
+
+	Url62(UuidConverter converter) {
+		this.converter = converter;
+	}
+
 	/**
 	 * Encode UUID to Url62 id
 	 *
 	 * @param uuid UUID to be encoded
 	 * @return url62 encoded UUID
 	 */
-	static String encode(UUID uuid) {
-		BigInteger pair = UuidConverter.toBigInteger(uuid);
+	String encode(UUID uuid) {
+		BigInteger pair = converter.toBigInteger(uuid);
 		return Base62.encode(pair);
 	}
 
@@ -25,9 +31,9 @@ class Url62 {
 	 * @param id url62 encoded id
 	 * @return decoded UUID
 	 */
-	static UUID decode(String id) {
+	UUID decode(String id) {
 		BigInteger decoded = Base62.decode(id);
-		return UuidConverter.toUuid(decoded);
+		return converter.toUuid(decoded);
 	}
 
 }
