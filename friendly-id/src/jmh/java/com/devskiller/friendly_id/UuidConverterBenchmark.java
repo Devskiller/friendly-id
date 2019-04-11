@@ -29,6 +29,8 @@ public class UuidConverterBenchmark {
 	UUID[] uuids;
 	BigInteger[] ids;
 
+	UuidConverter converter = new UuidConverter(new ShiftingPairing());
+
 	public static void main(String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder()
 				.include(UuidConverterBenchmark.class.getSimpleName())
@@ -50,7 +52,7 @@ public class UuidConverterBenchmark {
 	@OperationsPerInvocation(SIZE)
 	public void convertToBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(UuidConverter.toBigInteger(uuids[i]));
+			blackhole.consume(converter.toBigInteger(uuids[i]));
 		}
 	}
 
@@ -58,7 +60,7 @@ public class UuidConverterBenchmark {
 	@OperationsPerInvocation(SIZE)
 	public void convertFromBigInteger(Blackhole blackhole) {
 		for (int i = 0; i < SIZE; i++) {
-			blackhole.consume(UuidConverter.toUuid(ids[i]));
+			blackhole.consume(converter.toUuid(ids[i]));
 		}
 	}
 }

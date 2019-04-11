@@ -16,10 +16,10 @@ public class DataProvider {
 		Gen<Long> longs = Gen.choose(Long.MIN_VALUE, Long.MAX_VALUE);
 		return random -> Tuple.of(longs.apply(random), longs.apply(random));
 	};
-	static Arbitrary<UUID> UUIDS = ignored -> random -> UUID.randomUUID();
+	public static Arbitrary<UUID> UUIDS = ignored -> random -> UUID.randomUUID();
 	static Arbitrary<BigInteger> POSITIVE_BIG_INTEGERS = ignored -> random ->
 			new BigInteger(128, new Random());
-	static Arbitrary<String> FRIENDLY_IDS = Arbitrary.string(
+	public static Arbitrary<String> FRIENDLY_IDS = Arbitrary.string(
 			Gen.frequency(
 					Tuple.of(1, Gen.choose('A', 'Z')),
 					Tuple.of(1, Gen.choose('a', 'z')),

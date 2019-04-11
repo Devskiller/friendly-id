@@ -6,30 +6,32 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class Url62Test {
 
+	Url62 url62 = new Url62(new UuidConverter(new ShiftingPairing()));
+
 	@Test
 	public void shouldExplodeWhenContainsIllegalCharacters() {
-		assertThatThrownBy(() -> Url62.decode("Foo Bar"))
+		assertThatThrownBy(() -> url62.decode("Foo Bar"))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("contains illegal characters");
 	}
 
 	@Test
 	public void shouldFaildOnEmptyString() {
-		assertThatThrownBy(() -> Url62.decode(""))
+		assertThatThrownBy(() -> url62.decode(""))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("must not be empty");
 	}
 
 	@Test
 	public void shouldFailsOnNullString() {
-		assertThatThrownBy(() -> Url62.decode(null))
+		assertThatThrownBy(() -> url62.decode(null))
 				.isInstanceOf(NullPointerException.class)
 				.hasMessageContaining("must not be null");
 	}
 
 	@Test
 	public void shouldFailsWhenStringContainsMoreThan128bitInformation() {
-		assertThatThrownBy(() -> Url62.decode("7NLCAyd6sKR7kDHxgAWFPas"))
+		assertThatThrownBy(() -> url62.decode("7NLCAyd6sKR7kDHxgAWFPas"))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("more than 128bit information");
 	}
