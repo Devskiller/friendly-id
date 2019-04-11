@@ -11,19 +11,12 @@ import static org.assertj.core.util.Objects.areEqual;
 
 public class FriendlyIdTest {
 
-	private static final int NUMBER_OF_ATTEMPS = 10_000;
-
-	@Test
-	public void name() {
-		FriendlyId.createFriendlyId();
-	}
-
 	@Test
 	public void shouldCreateValidIdsThatConformToUuidType4() {
 		def("areEqual(FriendlyId.toUuid(FriendlyId.toFriendlyId(uuid))), uuid)")
 				.forAll(Arbitrary.integer())
 				.suchThat(ignored -> toUuid(FriendlyId.createFriendlyId()).version() == 4)
-				.check(-1, NUMBER_OF_ATTEMPS)
+				.check(-1, 100_000)
 				.assertIsSatisfied();
 	}
 

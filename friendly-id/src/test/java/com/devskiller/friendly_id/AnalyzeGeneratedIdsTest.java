@@ -14,12 +14,10 @@ public class AnalyzeGeneratedIdsTest {
 
 	private List<String> ids = new ArrayList<>();
 
-	UuidConverter converter = new UuidConverter(new ShiftingPairing());
-
 	@Test
 	public void analyzeGeneratedValueStatistics() {
 		for (int i = 0; i < 100_000; i++) {
-			this.ids.add(Base62.encode(converter.toBigInteger(UUID.randomUUID())));
+			this.ids.add(Base62.encode(UuidConverter.toBigInteger(UUID.randomUUID())));
 		}
 		IntSummaryStatistics stats = ids.stream().map(String::length).mapToInt(Integer::intValue).summaryStatistics();
 

@@ -4,7 +4,7 @@ import static org.assertj.core.util.Objects.areEqual;
 
 public class IdUtil {
 
-	public static boolean areEqualIgnoringLeadingZeros(String code1, String code2) {
+	static boolean areEqualIgnoringLeadingZeros(String code1, String code2) {
 		return areEqual(removeLeadingZeros(code1), removeLeadingZeros(code2));
 	}
 
