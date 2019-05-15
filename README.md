@@ -35,9 +35,10 @@ Such a format is:
 
 Our FriendlyID Java library solves these problems by converting a given UUID using Base62 with alphanumeric characters in the range [0-9A-Za-z] into a FriendlyId which consists of a maximum of 22 characters (but in fact often contains fewer characters).
 
-Use cases
---
-1. Basic (returning a user in a database)
+##Use cases
+
+###Basic (returning a user in a database)
+
 
 Let us assume that a method in the controller for returning users requires the relevant UUID in order to find a given user in a database, as in this example:
 
@@ -57,7 +58,7 @@ public User getUser(@PathVariable UUID userId) {
 In addition, if a given document returned by such a method contains objects of type UUID, those IDs will also be shortened into FriendlyID format.
 
 
-2. Advanced (Optimizing testing)
+###Advanced (Optimizing testing)
 
  
  The FriendlyID library makes it possible to define for UUIDs values which are easy to read. By using names instead of hard-to-remember UUIDs, you can write much simpler tests for your code, for example:
@@ -92,20 +93,24 @@ Dependencies
 Usage
 ---
 
-1. ```java
+* `FriendlyId#createFriendlyId`
+
+```java
 FriendlyId.createFriendlyId();
 ```
 
 This creates a new, random FriendlyID, for example: `5wbwf6yUxVBcr48AMbz9cb`
 
-
-2. ```java
+* `FriendlyId#toFriendlyId`
+```java
 FriendlyId.toFriendlyId(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
 ```
 
 This converts a UUID in the form of a string to a FriendlyID, for example: `5wbwf6yUxVBcr48AMbz9cb`
 
-3. ```java
+* `FriendlyId#toUuid`
+
+ ```java
 FriendlyId.toUuid("5wbwf6yUxVBcr48AMbz9cb");
 ```
 
@@ -119,15 +124,15 @@ Notes
 * If a FriendlyID has any leading zeros, those leading zeros are ignored - for example, `00cafe` is treated as `cafe`.
 
 
-Integrations
---
+##Integrations
+
 
 - [Spring Boot integration](#Spring-Boot-integration)
 - [Jackson integration ](#Jackson-integration)
 
-Spring Boot integration
----
-1. The FriendlyID library includes a Spring configuration to make it easy to add shorter IDs to an application. With a typical application based on Spring Boot, for your controllers to be able to use FriendlyIDs when communicating with the outside world, just add one new starter dependency as follows:
+###Spring Boot integration
+
+The FriendlyID library includes a Spring configuration to make it easy to add shorter IDs to an application. With a typical application based on Spring Boot, for your controllers to be able to use FriendlyIDs when communicating with the outside world, just add one new starter dependency as follows:
 
 ```xml
 <dependency>
@@ -137,7 +142,7 @@ Spring Boot integration
 </dependency>
 ```
     
-2. Let us assume that you'll use this sample application:
+Let us assume that you'll use this sample application:
 
 ```java
 @SpringBootApplication
@@ -160,7 +165,7 @@ public class Application {
 }  
 ```   
     
-3. This command: `curl http://localhost:8080/bars/5fD1KwsxRcGhBqWNju0jzt` 
+This command: `curl http://localhost:8080/bars/5fD1KwsxRcGhBqWNju0jzt` 
 
 will result in the following output: 
 ```json
@@ -169,11 +174,10 @@ will result in the following output:
 
 In this case, `Bar` is a POJO class which is converted by Spring MVC to a JSON document. This `Bar` object has one field of type UUID, and this field is output to the JSON document as a FriendlyID instead of a UUID. Although the application uses the relevant UUID internally, from an external point of view, only the FriendlyID is visible.    
 
-Jackson integration    
----
+###Jackson integration    
 
-1. First, add the following Jackson module dependency:
 
+First, add the following Jackson module dependency:
 ```xml
 <dependency>
     <groupId>com.devskiller.friendly-id</groupId>
@@ -181,8 +185,7 @@ Jackson integration
     <version>1.1.0</version>
 </dependency>
 ```
-
-2. Then register the friendly_id module as follows:
+Then register the `FriendlyIdModule` module as follows:
 
 ```java
 ObjectMapper mapper = new ObjectMapper()
@@ -197,11 +200,6 @@ Thinking of helping us out? We invite you to take a look at:
 - Source Code: [github.com/Devskiller/friendly-id/](github.com/Devskiller/friendly-id/)
 - Issue Tracker: [github.com/Devskiller/friendly-id/issues](github.com/Devskiller/friendly-id/issues)
 
-
-Support
--------
-
-If you are having issues, please let us know at: [email]@devskiller.com
 
 License
 -------
