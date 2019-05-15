@@ -35,9 +35,9 @@ Such a format is:
 
 Our FriendlyID Java library solves these problems by converting a given UUID using Base62 with alphanumeric characters in the range [0-9A-Za-z] into a FriendlyId which consists of a maximum of 22 characters (but in fact often contains fewer characters).
 
-##Use cases
+## Use cases
 
-###Basic (returning a user in a database)
+### Basic (returning a user in a database)
 
 
 Let us assume that a method in the controller for returning users requires the relevant UUID in order to find a given user in a database, as in this example:
@@ -58,7 +58,7 @@ public User getUser(@PathVariable UUID userId) {
 In addition, if a given document returned by such a method contains objects of type UUID, those IDs will also be shortened into FriendlyID format.
 
 
-###Advanced (Optimizing testing)
+### Advanced (Optimizing testing)
 
  
  The FriendlyID library makes it possible to define for UUIDs values which are easy to read. By using names instead of hard-to-remember UUIDs, you can write much simpler tests for your code, for example:
@@ -124,13 +124,13 @@ Notes
 * If a FriendlyID has any leading zeros, those leading zeros are ignored - for example, `00cafe` is treated as `cafe`.
 
 
-##Integrations
+## Integrations
 
 
 - [Spring Boot integration](#Spring-Boot-integration)
 - [Jackson integration ](#Jackson-integration)
 
-###Spring Boot integration
+### Spring Boot integration
 
 The FriendlyID library includes a Spring configuration to make it easy to add shorter IDs to an application. With a typical application based on Spring Boot, for your controllers to be able to use FriendlyIDs when communicating with the outside world, just add one new starter dependency as follows:
 
@@ -174,7 +174,7 @@ will result in the following output:
 
 In this case, `Bar` is a POJO class which is converted by Spring MVC to a JSON document. This `Bar` object has one field of type UUID, and this field is output to the JSON document as a FriendlyID instead of a UUID. Although the application uses the relevant UUID internally, from an external point of view, only the FriendlyID is visible.    
 
-###Jackson integration    
+### Jackson integration    
 
 
 First, add the following Jackson module dependency:
