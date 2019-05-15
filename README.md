@@ -46,14 +46,23 @@ Let us assume that a method in the controller for returning users requires the r
 @GetMapping("/users/{userId}") 
 public User getUser(@PathVariable UUID userId) {
         [implementation deleted]
-    }
+}
 ```
 
-- Without using the Friendly ID library, you could access a given user as follows:
-`curl http://localhost:8080/users/c3587ec5-0976-497f-8374-61e0c2ea3da5`
+Without using the Friendly ID library, you could access a given user as follows:
 
-- After adding the FriendlyID library, the controller method itself does not change, but you would be able to access a given user using the relevant FriendlyID as follows:
-`curl http://localhost:8080/users/5wbwf6yUxVBcr48AMbz9cb`
+```bash
+curl http://localhost:8080/users/c3587ec5-0976-497f-8374-61e0c2ea3da5
+```
+
+
+After adding the FriendlyID library, the controller method itself does not change, but you would be able to access a given user using the relevant FriendlyID as follows: 
+
+```bash
+curl http://localhost:8080/users/5wbwf6yUxVBcr48AMbz9cb
+```
+
+
 
 In addition, if a given document returned by such a method contains objects of type UUID, those IDs will also be shortened into FriendlyID format.
 
@@ -66,10 +75,10 @@ In addition, if a given document returned by such a method contains objects of t
 ```java
 @Test 
 public void shouldGetUser() { 
-mockMvc.perform(get("/users/{userId}", "John")) 
-.andExpect(status().isOk()) 
-.andExpect(content().contentType("application/json")) 
-.andExpect(jsonPath("$.uuid", is("John"))); 
+    mockMvc.perform(get("/users/{userId}", "John")) 
+        .andExpect(status().isOk()) 
+        .andExpect(content().contentType("application/json")) 
+        .andExpect(jsonPath("$.uuid", is("John"))); 
 } 
 ```
 
@@ -93,22 +102,18 @@ Dependencies
 Usage
 ---
 
-* `FriendlyId#createFriendlyId`
-
 ```java
 FriendlyId.createFriendlyId();
 ```
 
 This creates a new, random FriendlyID, for example: `5wbwf6yUxVBcr48AMbz9cb`
 
-* `FriendlyId#toFriendlyId`
 ```java
 FriendlyId.toFriendlyId(UUID.fromString("c3587ec5-0976-497f-8374-61e0c2ea3da5"));
 ```
 
 This converts a UUID in the form of a string to a FriendlyID, for example: `5wbwf6yUxVBcr48AMbz9cb`
 
-* `FriendlyId#toUuid`
 
  ```java
 FriendlyId.toUuid("5wbwf6yUxVBcr48AMbz9cb");
