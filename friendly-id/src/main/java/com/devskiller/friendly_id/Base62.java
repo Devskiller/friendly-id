@@ -72,8 +72,7 @@ class Base62 {
 				.reduce(BigInteger.ZERO, (acc, value) -> {
 					BigInteger sum = acc.add(value);
 					if (bitLimit > 0 && sum.bitLength() > bitLimit) {
-						throwIllegalArgumentException("String contains '%s' more than 128bit information (%sbit)",
-								string, sum.bitLength());
+						throwIllegalArgumentException("String '%s' contains more than 128bit information", string);
 					}
 					return sum;
 				});

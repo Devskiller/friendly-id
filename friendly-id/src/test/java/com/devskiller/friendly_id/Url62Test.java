@@ -31,6 +31,6 @@ public class Url62Test {
 	public void shouldFailsWhenStringContainsMoreThan128bitInformation() {
 		assertThatThrownBy(() -> Url62.decode("7NLCAyd6sKR7kDHxgAWFPas"))
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessageContaining("more than 128bit information");
+				.hasMessageContaining("contains more than 128bit information");
 	}
 }
