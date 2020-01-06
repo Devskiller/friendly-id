@@ -1,30 +1,24 @@
 package com.devskiller.friendly_id.sample.hateos;
 
-import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
-import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
-
 import com.devskiller.friendly_id.sample.hateos.domain.Bar;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilderFactory;
 
-public class BarResourceAssembler extends IdentifiableResourceAssemblerSupport<Bar, BarResource> {
+import static com.devskiller.friendly_id.FriendlyId.toFriendlyId;
+
+public class BarResourceAssembler extends RepresentationModelAssemblerSupport<Bar, BarResource> {
 
 	public BarResourceAssembler() {
-		this(BarController.class);
-	}
-
-	public BarResourceAssembler(Class<?> controllerType) {
-		super(controllerType, BarResource.class);
+		super(BarController.class, BarResource.class);
 	}
 
 	@Override
-	public BarResource toResource(Bar entity) {
-		BarResource resource = createResourceWithId(UuidHelper.toFriendlyId(entity), entity, UuidHelper.toFriendlyId(entity.getFoo()));
-		ControllerLinkBuilderFactory factory = new ControllerLinkBuilderFactory();
-		resource.add(factory.linkTo(FooController.class, entity.getFoo().getId()).withRel("foos"));
+	public BarResource toModel(Bar entity) {
+		BarResource resource = new BarResource(entity.getName());
+		WebMvcLinkBuilderFactory factory = new WebMvcLinkBuilderFactory();
+		resource.add(factory.linkTo(FooController.class).withRel("foos"));
+		resource.add(factory.linkTo(BarController.class, toFriendlyId(entity.getFoo().getId())).slash(toFriendlyId(entity.getId())).withSelfRel());
 		return resource;
 	}
 
-	@Override
-	protected BarResource instantiateResource(Bar entity) {
-		return new BarResource(entity.getName());
-	}
 }

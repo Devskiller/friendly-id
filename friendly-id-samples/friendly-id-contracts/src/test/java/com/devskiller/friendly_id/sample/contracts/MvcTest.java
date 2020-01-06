@@ -1,23 +1,21 @@
 package com.devskiller.friendly_id.sample.contracts;
 
-import java.util.UUID;
-
+import com.devskiller.friendly_id.FriendlyId;
+import com.devskiller.friendly_id.jackson.FriendlyIdModule;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
-import com.devskiller.friendly_id.FriendlyId;
-import com.devskiller.friendly_id.jackson.FriendlyIdModule;
+import java.util.UUID;
 
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
