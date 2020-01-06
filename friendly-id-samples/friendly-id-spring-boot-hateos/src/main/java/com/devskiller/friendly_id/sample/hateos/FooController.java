@@ -1,30 +1,21 @@
 package com.devskiller.friendly_id.sample.hateos;
 
-import java.lang.invoke.MethodHandles;
-import java.net.URI;
-import java.util.UUID;
-
+import com.devskiller.friendly_id.sample.hateos.domain.Foo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
-import com.devskiller.friendly_id.sample.hateos.domain.Foo;
+import java.lang.invoke.MethodHandles;
+import java.net.URI;
+import java.util.UUID;
 
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.on;
-
 
 @RestController
 @ExposesResourceFor(FooResource.class)
@@ -44,16 +35,15 @@ public class FooController {
 		log.info("Get {}", id);
 		Foo foo = new Foo(id, "Foo");
 
-		FooResource fooResource = assembler.toResource(foo);
+		FooResource fooResource = assembler.toModel(foo);
 		return ResponseEntity.ok(fooResource);
-
 	}
 
 	@PutMapping("/{id}")
 	public HttpEntity<FooResource> update(@PathVariable UUID id, @RequestBody FooResource fooResource) {
 		log.info("Update {} : {}", id, fooResource);
 		Foo entity = new Foo(fooResource.getUuid(), fooResource.getName());
-		return ResponseEntity.ok(assembler.toResource(entity));
+		return ResponseEntity.ok(assembler.toModel(entity));
 	}
 
 	@PostMapping

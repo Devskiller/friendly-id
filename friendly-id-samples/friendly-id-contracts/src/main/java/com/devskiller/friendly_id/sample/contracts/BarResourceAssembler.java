@@ -1,39 +1,33 @@
 package com.devskiller.friendly_id.sample.contracts;
 
-import org.springframework.hateoas.RelProvider;
-import org.springframework.hateoas.mvc.ControllerLinkBuilderFactory;
-import org.springframework.hateoas.mvc.IdentifiableResourceAssemblerSupport;
-
+import com.devskiller.friendly_id.FriendlyId;
 import com.devskiller.friendly_id.sample.contracts.domain.Bar;
 import com.devskiller.friendly_id.sample.contracts.domain.Foo;
+import org.springframework.hateoas.server.LinkRelationProvider;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilderFactory;
 
-import static com.devskiller.friendly_id.sample.contracts.UuidHelper.toFriendlyId;
+public class BarResourceAssembler extends RepresentationModelAssemblerSupport<Bar, BarResource> {
 
-public class BarResourceAssembler extends IdentifiableResourceAssemblerSupport<Bar, BarResource> {
+	LinkRelationProvider relProvider;
 
-	private final RelProvider relProvider;
-
-	public BarResourceAssembler(RelProvider relProvider) {
-		this(BarController.class, relProvider);
+	public BarResourceAssembler() {
+		super(BarController.class, BarResource.class);
 	}
 
-	public BarResourceAssembler(Class<?> controllerType, RelProvider relProvider) {
-		super(controllerType, BarResource.class);
+	public BarResourceAssembler(LinkRelationProvider relProvider) {
+		super(BarController.class, BarResource.class);
 		this.relProvider = relProvider;
 	}
 
 	@Override
-	public BarResource toResource(Bar entity) {
-		BarResource resource = createResourceWithId(toFriendlyId(entity), entity, toFriendlyId(entity.getFoo()));
-		ControllerLinkBuilderFactory factory = new ControllerLinkBuilderFactory();
-		resource.add(factory.linkTo(FooController.class, toFriendlyId(entity.getFoo()))
+	public BarResource toModel(Bar entity) {
+		BarResource resource = new BarResource(entity.getName());
+		WebMvcLinkBuilderFactory factory = new WebMvcLinkBuilderFactory();
+		resource.add(factory.linkTo(FooController.class, FriendlyId.toFriendlyId(entity.getFoo().getId()))
 				.withRel(relProvider.getCollectionResourceRelFor(Foo.class)));
+		resource.add(factory.linkTo(BarController.class, FriendlyId.toFriendlyId(entity.getFoo().getId())).slash(FriendlyId.toFriendlyId(entity.getId())).withSelfRel());
 		return resource;
-	}
-
-	@Override
-	protected BarResource instantiateResource(Bar entity) {
-		return new BarResource(entity.getName());
 	}
 
 }

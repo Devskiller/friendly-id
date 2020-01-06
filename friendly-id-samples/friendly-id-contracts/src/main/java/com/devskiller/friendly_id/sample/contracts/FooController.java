@@ -1,26 +1,19 @@
 package com.devskiller.friendly_id.sample.contracts;
 
-import java.lang.invoke.MethodHandles;
-import java.util.UUID;
-
+import com.devskiller.friendly_id.FriendlyId;
+import com.devskiller.friendly_id.sample.contracts.domain.Foo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.server.EntityLinks;
+import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.devskiller.friendly_id.sample.contracts.domain.Foo;
+import java.lang.invoke.MethodHandles;
+import java.util.UUID;
 
 
 @RestController
@@ -42,14 +35,14 @@ public class FooController {
 	public FooResource get(@PathVariable UUID id) {
 		log.info("Get {}", id);
 		Foo foo = new Foo(id, "Foo");
-		return assembler.toResource(foo);
+		return assembler.toModel(foo);
 	}
 
 	@PutMapping("/{id}")
 	public HttpEntity<FooResource> update(@PathVariable UUID id, @RequestBody FooResource fooResource) {
 		log.info("Update {} : {}", id, fooResource);
 		Foo entity = new Foo(fooResource.getUuid(), fooResource.getName());
-		return ResponseEntity.ok(assembler.toResource(entity));
+		return ResponseEntity.ok(assembler.toModel(entity));
 	}
 
 	@PostMapping
@@ -59,7 +52,7 @@ public class FooController {
 
 		// ...
 
-		headers.setLocation(entityLinks.linkForSingleResource(FooResource.class, UuidHelper.toFriendlyId(entity)).toUri());
+		headers.setLocation(entityLinks.linkToItemResource(FooResource.class, FriendlyId.toFriendlyId(entity.getId())).toUri());
 		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 

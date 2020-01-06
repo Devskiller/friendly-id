@@ -33,7 +33,7 @@ public class FooControllerTest {
 		mockMvc.perform(get("/foos/{id}", "cafe"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().contentType("application/hal+json;charset=UTF-8"))
+				.andExpect(content().contentType("application/hal+json"))
 				.andExpect(jsonPath("$.uuid", is("cafe")))
 				.andExpect(jsonPath("$._links.self.href", is("http://localhost/foos/cafe")));
 	}
@@ -42,7 +42,7 @@ public class FooControllerTest {
 	public void shouldCreate() throws Exception {
 		mockMvc.perform(post("/foos/")
 				.content("{\"uuid\":\"newFoo\",\"name\":\"Very New Foo\"}")
-				.contentType("application/hal+json;charset=UTF-8"))
+				.contentType("application/hal+json"))
 				.andDo(print())
 				.andExpect(header().string("Location", "http://localhost/foos/newFoo"))
 				.andExpect(status().isCreated());

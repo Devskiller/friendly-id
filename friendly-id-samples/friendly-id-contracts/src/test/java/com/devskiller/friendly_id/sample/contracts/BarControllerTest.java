@@ -30,7 +30,7 @@ public class BarControllerTest {
 		mockMvc.perform(get("/foos/{fooId}/bars/{barId}", "foo", "bar"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().contentType("application/hal+json;charset=UTF-8"))
+				.andExpect(content().contentType("application/hal+json"))
 				.andExpect(jsonPath("$.name", is("Bar")))
 				.andExpect(jsonPath("$._links.self.href", is("http://localhost/foos/foo/bars/bar")))
 				.andExpect(jsonPath("$._links.foos.href", is("http://localhost/foos")));
