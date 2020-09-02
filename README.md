@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Devskiller/friendly-id.svg?branch=master)](https://travis-ci.org/Devskiller/friendly-id)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id)  [![Coverage Status](https://coveralls.io/repos/github/Devskiller/friendly-id/badge.svg?branch=master)](https://coveralls.io/github/Devskiller/friendly-id?branch=master)
 
-FriendlyID
+FriendlyID (Java, [Swift](https://github.com/kdubb/SwiftFriendlyId)) 
 ==
 
 
@@ -34,6 +34,12 @@ Such a format is:
 
 
 Our FriendlyID Java library solves these problems by converting a given UUID using Base62 with alphanumeric characters in the range [0-9A-Za-z] into a FriendlyId which consists of a maximum of 22 characters (but in fact often contains fewer characters).
+
+Supported languages
+--
+
+Curently FriendlyId supports Java (this project) and [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb)) 
+
 
 ## Use cases
 
