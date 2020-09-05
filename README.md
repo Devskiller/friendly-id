@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Devskiller/friendly-id.svg?branch=master)](https://travis-ci.org/Devskiller/friendly-id)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id)  [![Coverage Status](https://coveralls.io/repos/github/Devskiller/friendly-id/badge.svg?branch=master)](https://coveralls.io/github/Devskiller/friendly-id?branch=master)
 
-FriendlyID (Java, [Swift](https://github.com/kdubb/SwiftFriendlyId)) 
+FriendlyID (Java, [Swift](https://github.com/kdubb/SwiftFriendlyId), [Rust](https://github.com/mariuszs/friendly_id)) 
 ==
 
 
