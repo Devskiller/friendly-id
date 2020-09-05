@@ -40,6 +40,13 @@ Supported languages
 
 Curently FriendlyId supports Java (this project) and [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb)) 
 
+Tools
+--
+
+There is available CLI converters
+
+* https://github.com/mariuszs/rust-friendlyid (also available in RPM and DEB format)
+* https://github.com/kdubb/SwiftFriendlyId#command-line
 
 ## Use cases
 
