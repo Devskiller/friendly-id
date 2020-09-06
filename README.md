@@ -38,7 +38,7 @@ Our FriendlyID Java library solves these problems by converting a given UUID usi
 Supported languages
 --
 
-Curently FriendlyId supports Java (this project) and [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb)) 
+Curently FriendlyId supports Java (this project), [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb)) and [Rust](https://github.com/mariuszs/friendly_id) 
 
 Tools
 --
