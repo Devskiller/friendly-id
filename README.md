@@ -43,7 +43,7 @@ Curently FriendlyId supports Java (this project), [Swift](https://github.com/kdu
 Tools
 --
 
-There is available CLI converters
+There are available CLI converters for many platforms.
 
 * https://github.com/mariuszs/rust-friendlyid (also available in RPM and DEB format)
 * https://github.com/kdubb/SwiftFriendlyId#command-line
