@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/Devskiller/friendly-id.svg?branch=master)](https://travis-ci.org/Devskiller/friendly-id)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id)  [![Coverage Status](https://coveralls.io/repos/github/Devskiller/friendly-id/badge.svg?branch=master)](https://coveralls.io/github/Devskiller/friendly-id?branch=master)
+[![Build Status](https://travis-ci.org/Devskiller/friendly-id.svg?branch=master)](https://travis-ci.org/Devskiller/friendly-id)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.devskiller.friendly-id/friendly-id)  [![Coverage Status](https://coveralls.io/repos/github/Devskiller/friendly-id/badge.svg?branch=master)](https://coveralls.io/github/Devskiller/friendly-id?branch=master) 
 
-FriendlyID (Java, [Swift](https://github.com/kdubb/SwiftFriendlyId), [Rust](https://github.com/mariuszs/friendly_id)), [Go](https://github.com/mariuszs/friendlyid-go) 
+FriendlyID (Java, [Swift](https://github.com/kdubb/SwiftFriendlyId), [Rust](https://github.com/mariuszs/friendly_id), [Go](https://github.com/mariuszs/friendlyid-go))
 ==
 
 
@@ -38,7 +38,10 @@ Our FriendlyID Java library solves these problems by converting a given UUID usi
 Supported languages
 --
 
-Curently FriendlyId supports Java (this project), [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb)) and [Rust](https://github.com/mariuszs/friendly_id) 
+Curently FriendlyId supports Java (this project) and
+ * [Swift](https://github.com/kdubb/SwiftFriendlyId) language (thanks to [Kevin Wooten](https://github.com/kdubb))
+ * [Rust](https://github.com/mariuszs/friendly_id) [![Version](https://img.shields.io/crates/v/friendly_id.svg?style=social&logo=appveyor)](https://crates.io/crates/friendly_id)
+ * [Go](https://github.com/mariuszs/friendlyid-go) 
 
 Tools
 --
