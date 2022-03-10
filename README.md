@@ -218,8 +218,8 @@ Contributing
 
 Thinking of helping us out? We invite you to take a look at:
 
-- Source Code: [github.com/Devskiller/friendly-id/](github.com/Devskiller/friendly-id/)
-- Issue Tracker: [github.com/Devskiller/friendly-id/issues](github.com/Devskiller/friendly-id/issues)
+- Source Code: [github.com/Devskiller/friendly-id/](https://github.com/Devskiller/friendly-id)
+- Issue Tracker: [github.com/Devskiller/friendly-id/issues](https://github.com/Devskiller/friendly-id/issues)
 
 
 License
